@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>LORD YAMRAJ // YAMLOK DHARMARAJ ULTIMATE REALM OS</title>
+    <!-- HTML2Canvas Library for Image Downloading -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
         :root {
             --main-red: #ff003c;
@@ -56,7 +58,7 @@
 
         .header .sub-title { color: var(--main-red); font-size: 11px; }
 
-        /* Multi-Page Tabs */
+        /* Multi-Page Tabs Navigation */
         .nav-tabs {
             display: flex;
             gap: 4px;
@@ -87,7 +89,7 @@
             box-shadow: 0 0 12px var(--gold-glow);
         }
 
-        /* Main View Container */
+        /* Main View Panel */
         .view-panel {
             flex-grow: 1;
             margin: 6px 0;
@@ -161,20 +163,20 @@
             text-shadow: 0 0 10px var(--glow-red);
         }
 
-        /* Warrant Card */
+        /* Downloadable Warrant Card */
         .warrant-card {
-            background: linear-gradient(135deg, #100003, #250008);
-            border: 2px solid var(--gold);
+            background: #0d0003;
+            border: 3px double var(--gold);
             border-radius: 8px;
-            padding: 12px;
+            padding: 15px;
             margin-top: 10px;
             box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
-            display: none;
+            text-align: center;
         }
 
-        .warrant-card h3 { color: var(--gold); text-align: center; font-size: 14px; margin-bottom: 8px; }
+        .warrant-card h3 { color: var(--gold); font-size: 15px; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* Input Bar */
+        /* Input Area */
         .input-area {
             display: flex;
             align-items: center;
@@ -201,17 +203,30 @@
             margin-top: 6px;
         }
 
+        .download-btn {
+            background: var(--gold);
+            color: #000;
+            border: none;
+            padding: 8px 14px;
+            font-size: 11px;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            box-shadow: 0 0 10px var(--gold-glow);
+        }
+
         .sound-btn {
             background: rgba(255, 215, 0, 0.15);
             border: 1px solid var(--gold);
             color: var(--gold);
-            padding: 3px 6px;
+            padding: 4px 8px;
             font-size: 10px;
             border-radius: 4px;
             cursor: pointer;
+            font-weight: bold;
         }
 
-        /* Flash Overlay */
         #flash-overlay {
             position: fixed;
             top:0; left:0; width:100vw; height:100vh;
@@ -230,35 +245,62 @@
 
     <div id="flash-overlay"></div>
 
+    <!-- Background Mantra Audio Player -->
+    <audio id="chantAudio" loop src="mantra.mp3"></audio>
+
     <div class="header">
         <span>❖ LORD YAMRAJ DHARMARAJ ❖</span>
-        <span class="sub-title">SOULS TRANSIT: <b id="soulCount">1,084,291</b></span>
-        <button class="sound-btn" onclick="playChantSound()">🔊 Chant Sound</button>
+        <button class="sound-btn" onclick="toggleChantSound()">🔊 Chant Mantra</button>
     </div>
 
     <!-- Multi-Page Tabs Navigation -->
     <div class="nav-tabs">
         <button class="tab-btn active" onclick="switchTab('terminal-view')">🖥️ Main Console</button>
+        <button class="tab-btn" onclick="switchTab('warrant-view')">🪪 Death Warrant</button>
         <button class="tab-btn" onclick="switchTab('timer-view')">⏳ Remaining Life Clock</button>
         <button class="tab-btn" onclick="switchTab('chitragupta-view')">📜 Chitragupta Ledger</button>
         <button class="tab-btn" onclick="switchTab('naraka-view')">👹 28 Naraka List</button>
-        <button class="tab-btn" onclick="switchTab('warrant-view')">🪪 Death Warrant</button>
     </div>
 
     <!-- PAGE 1: Terminal Console -->
     <div id="terminal-view" class="view-panel active">
         <div id="terminal-lines">
             <div class="line sys-msg">=== DHARMARAJ YAMLOK ULTIMATE REALM ONLINE ===</div>
-            <div class="line" style="color:var(--gold)">• Type any target name below or check remaining life clock in tabs.</div>
+            <div class="line" style="color:var(--gold)">• Type target name below or click Death Warrant tab.</div>
         </div>
     </div>
 
-    <!-- PAGE 2: Remaining Life Timer Calculator -->
+    <!-- PAGE 2: Death Warrant Generator -->
+    <div id="warrant-view" class="view-panel">
+        <div class="card">
+            <div class="card-header">🪪 GENERATE & DOWNLOAD DEATH WARRANT</div>
+            <input type="text" id="warrantName" placeholder="Enter target sinner name..." style="width:100%; border:1px solid var(--gold); margin-bottom:6px;">
+            <button class="action-btn" onclick="generateDeathWarrant()">Generate Warrant</button>
+
+            <!-- Printable Card Area -->
+            <div id="warrantBox" class="warrant-card" style="display:none;">
+                <h3>☠︎ OFFICIAL YAMLOK DEATH WARRANT ☠︎</h3>
+                <p style="font-size:11px; color:var(--gold); margin-bottom:8px;">SUPREME COURT OF LORD YAMRAJ DHARMARAJ</p>
+                
+                <div style="text-align:left; font-size:12px; line-height:1.6; border-top:1px solid #400; border-bottom:1px solid #400; padding:8px 0;">
+                    <p><b>TARGET NAME:</b> <span id="wNameDisplay" style="color:#fff;">-</span></p>
+                    <p><b>DECREE ISSUED BY:</b> Dharmaraj Lord Yamraj</p>
+                    <p><b>AUDITED BY:</b> Maharishi Chitragupta</p>
+                    <p><b>PUNISHMENT GATE:</b> <span id="wGateDisplay" style="color:var(--main-red);">Kumbhipaka Naraka</span></p>
+                    <p><b>DATE OF ISSUE:</b> <span id="wDateDisplay" style="color:#00f0ff;">-</span></p>
+                </div>
+
+                <p style="font-size:11px; color:var(--gold); margin-top:10px;">[OFFICIALLY SEALED WITH DHARMARAJ KALADANDA ☸︎]</p>
+            </div>
+
+            <button id="downloadWarrantBtn" class="download-btn" style="display:none;" onclick="downloadWarrantCard()">📥 Download Warrant Image (.PNG)</button>
+        </div>
+    </div>
+
+    <!-- PAGE 3: Remaining Life Clock -->
     <div id="timer-view" class="view-panel">
         <div class="card">
-            <div class="card-header">⏳ CHITRAGUPTA LIFE EXPECTANCY CALCULATOR (आयुष गणना)</div>
-            <p style="font-size:11px; color:#ccc; margin-bottom:8px;">Enter details to calculate remaining time on Prithvi Lok:</p>
-            
+            <div class="card-header">⏳ CHITRAGUPTA LIFE EXPECTANCY CALCULATOR</div>
             <label style="font-size:11px;">Target Name:</label>
             <input type="text" id="lifeName" placeholder="e.g. Rahul Sharma" style="width:100%; margin-bottom:6px; border: 1px solid var(--gold);">
             
@@ -277,17 +319,17 @@
         </div>
     </div>
 
-    <!-- PAGE 3: Chitragupta Ledger -->
+    <!-- PAGE 4: Chitragupta Ledger -->
     <div id="chitragupta-view" class="view-panel">
         <div class="card">
-            <div class="card-header">📜 CHITRAGUPTA AGRASANDHANI (चित्रगुप्त खाता)</div>
+            <div class="card-header">📜 CHITRAGUPTA AGRASANDHANI</div>
             <input type="text" id="karmaTarget" placeholder="Enter target name..." style="width: 100%; border: 1px solid var(--gold); margin-bottom:6px;">
             <button class="action-btn" onclick="calculateKarma()">Scan Karmic Balance</button>
             <div id="karmaResult" style="margin-top:10px;"></div>
         </div>
     </div>
 
-    <!-- PAGE 4: 28 Naraka List -->
+    <!-- PAGE 5: 28 Naraka List -->
     <div id="naraka-view" class="view-panel">
         <div class="card">
             <div class="card-header">👹 28 NARAKA PUNISHMENT SELECTOR</div>
@@ -304,24 +346,6 @@
         </div>
     </div>
 
-    <!-- PAGE 5: Death Warrant Generator -->
-    <div id="warrant-view" class="view-panel">
-        <div class="card">
-            <div class="card-header">🪪 YAMLOK OFFICIAL DEATH WARRANT</div>
-            <input type="text" id="warrantName" placeholder="Enter target name..." style="width:100%; border:1px solid var(--gold); margin-bottom:6px;">
-            <button class="action-btn" onclick="generateDeathWarrant()">Generate Death Warrant</button>
-
-            <div id="warrantBox" class="warrant-card">
-                <h3>☠︎ OFFICIAL YAMLOK DEATH WARRANT ☠︎</h3>
-                <p style="font-size:12px; border-bottom:1px solid #400; padding-bottom:4px;"><b>TARGET:</b> <span id="wNameDisplay" style="color:#fff;">-</span></p>
-                <p style="font-size:12px; margin-top:4px;"><b>DECREE BY:</b> Lord Yamraj Dharmaraj</p>
-                <p style="font-size:12px;"><b>AUDITED BY:</b> Maharishi Chitragupta</p>
-                <p style="font-size:12px;"><b>EXECUTION GATE:</b> <span id="wGateDisplay" style="color:var(--main-red)">Kumbhipaka Gate</span></p>
-                <p style="font-size:11px; color:var(--gold); margin-top:8px; text-align:center;">[SEALED WITH DHARMARAJ KALADANDA ☸︎]</p>
-            </div>
-        </div>
-    </div>
-
     <!-- Input Bar -->
     <div class="input-area">
         <span class="prompt">yamraj@yamlok:~$</span>
@@ -333,59 +357,22 @@
         const terminalLines = document.getElementById('terminal-lines');
         let countdownInterval = null;
 
-        // Sound Effects via Web Audio API
-        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-
-        function playBeepSound() {
-            try {
-                const osc = audioCtx.createOscillator();
-                const gain = audioCtx.createGain();
-                osc.type = 'sawtooth';
-                osc.frequency.setValueAtTime(300, audioCtx.currentTime);
-                gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
-                osc.connect(gain);
-                gain.connect(audioCtx.destination);
-                osc.start();
-                osc.stop(audioCtx.currentTime + 0.05);
-            } catch(e){}
-        }
-
-        function playThunderSound() {
-            try {
-                const osc = audioCtx.createOscillator();
-                const gain = audioCtx.createGain();
-                osc.type = 'square';
-                osc.frequency.setValueAtTime(80, audioCtx.currentTime);
-                osc.frequency.exponentialRampToValueAtTime(20, audioCtx.currentTime + 0.5);
-                gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.5);
-                osc.connect(gain);
-                gain.connect(audioCtx.destination);
-                osc.start();
-                osc.stop(audioCtx.currentTime + 0.5);
-            } catch(e){}
-        }
-
-        function playChantSound() {
-            try {
-                if (audioCtx.state === 'suspended') audioCtx.resume();
-                const osc = audioCtx.createOscillator();
-                const gain = audioCtx.createGain();
-                osc.type = 'sine';
-                osc.frequency.setValueAtTime(136.1, audioCtx.currentTime); // Om Frequency
-                gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 2.5);
-                osc.connect(gain);
-                gain.connect(audioCtx.destination);
-                osc.start();
-                osc.stop(audioCtx.currentTime + 2.5);
-            } catch(e){}
+        function toggleChantSound() {
+            const audio = document.getElementById('chantAudio');
+            if (audio.paused) {
+                audio.play().then(() => {
+                    alert("🔊 Lord Yamraj Chanting Mantra Started!");
+                }).catch(() => {
+                    alert("⚠️ Audio play block: Please interact with screen first.");
+                });
+            } else {
+                audio.pause();
+            }
         }
 
         function triggerRedFlash() {
             const overlay = document.getElementById('flash-overlay');
             overlay.style.opacity = '0.6';
-            playThunderSound();
             setTimeout(() => overlay.style.opacity = '0', 150);
         }
 
@@ -403,7 +390,6 @@
                 input.value = '';
                 if (!value) return;
 
-                playBeepSound();
                 switchTab('terminal-view');
                 printLine(`yamraj@yamlok:~$ ${value}`, 'cmd-line');
                 startDeathNoteExecution(value);
@@ -418,7 +404,34 @@
             terminalLines.scrollTop = terminalLines.scrollHeight;
         }
 
-        // Remaining Life Calculator
+        function generateDeathWarrant() {
+            const name = document.getElementById('warrantName').value.trim() || 'Target Sinner';
+            document.getElementById('wNameDisplay').innerText = name.toUpperCase();
+            document.getElementById('wDateDisplay').innerText = new Date().toLocaleDateString();
+            
+            const gates = ["Kumbhipaka Naraka", "Raurava Cavern", "Maharaurava Flame Gate", "Vaitarani River Crossing"];
+            const selectedGate = gates[Math.floor(Math.random() * gates.length)];
+            document.getElementById('wGateDisplay').innerText = selectedGate;
+
+            document.getElementById('warrantBox').style.display = 'block';
+            document.getElementById('downloadWarrantBtn').style.display = 'inline-block';
+            triggerRedFlash();
+        }
+
+        function downloadWarrantCard() {
+            const cardElement = document.getElementById('warrantBox');
+            html2canvas(cardElement, {
+                backgroundColor: "#0d0003",
+                scale: 2
+            }).then(canvas => {
+                const image = canvas.toDataURL("image/png");
+                const link = document.createElement('a');
+                link.href = image;
+                link.download = `Yamlok_Death_Warrant_${document.getElementById('wNameDisplay').innerText}.png`;
+                link.click();
+            });
+        }
+
         function calculateRemainingLife() {
             const name = document.getElementById('lifeName').value.trim() || 'Target';
             const age = parseInt(document.getElementById('lifeAge').value) || 20;
@@ -426,7 +439,6 @@
 
             if (countdownInterval) clearInterval(countdownInterval);
 
-            // Remaining years formula based on sin
             let remainingYears = Math.max(1, Math.floor((100 - age) * (1 - (sin / 120))));
             let totalSeconds = remainingYears * 365 * 24 * 3600;
 
@@ -469,7 +481,6 @@
         function showNarakaInfo() {
             const val = document.getElementById('narakaSelect').value;
             const details = document.getElementById('narakaDetails');
-            
             const info = {
                 kumbhipaka: "Boiling oil cauldrons for those who harmed innocent lives.",
                 raurava: "Serpent pit for deceptive and betraying souls.",
@@ -477,15 +488,7 @@
                 vaitarani: "Boiling blood and acid river crossed only by righteous deeds.",
                 tamisra: "Total pitch black darkness for robbers and thieves."
             };
-
             details.innerText = `Chitragupta Decree: ${info[val]}`;
-        }
-
-        function generateDeathWarrant() {
-            const name = document.getElementById('warrantName').value.trim() || 'Target Sinner';
-            document.getElementById('wNameDisplay').innerText = name.toUpperCase();
-            document.getElementById('warrantBox').style.display = 'block';
-            triggerRedFlash();
         }
 
         function startDeathNoteExecution(targetName) {
@@ -494,7 +497,6 @@
             
             setTimeout(() => {
                 printLine(`⚖️ [DEATH NOTE DECREE REGISTERED]: Target: <b style="color:#fff">${targetName}</b>`, 'sys-msg');
-                
                 const randomCodes = [
                     `0x99A_SEARCH_LIFE_KARMA // TARGET: ${targetName}`,
                     `FETCH_SOUL_ID --user="${targetName}" --realm=YAMLOK`,
@@ -508,7 +510,6 @@
                 const codeInterval = setInterval(() => {
                     if (count < randomCodes.length) {
                         printLine(`>> ${randomCodes[count]}`, 'code-matrix');
-                        playBeepSound();
                         count++;
                     } else {
                         clearInterval(codeInterval);
@@ -520,16 +521,6 @@
                 }, 300);
             }, 800);
         }
-
-        // Live Fake Soul Transit Counter Increment
-        setInterval(() => {
-            const el = document.getElementById('soulCount');
-            if (el) {
-                let current = parseInt(el.innerText.replace(/,/g, ''));
-                current += Math.floor(Math.random() * 5) + 1;
-                el.innerText = current.toLocaleString();
-            }
-        }, 3000);
     </script>
 </body>
 </html>
