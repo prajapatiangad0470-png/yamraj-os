@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MR YAMRAJ // DEATH NOTE REALM</title>
+    <title>MR YAMRAJ // YAMLOK REALM OS</title>
     <style>
         :root {
             --main-red: #ff003c;
             --dark-red: #500010;
             --glow-red: #ff2a2a;
-            --bg-overlay: rgba(5, 2, 3, 0.88);
+            --bg-overlay: rgba(0, 0, 0, 0.45);
             --font: 'Courier New', Courier, monospace;
         }
 
@@ -31,26 +31,60 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            padding: 15px;
+            padding: 12px;
             overflow: hidden;
         }
 
         .header {
             border-bottom: 2px solid var(--main-red);
-            padding-bottom: 8px;
             display: flex;
             justify-content: space-between;
             color: var(--main-red);
             font-weight: bold;
             text-shadow: 0 0 10px var(--glow-red);
-            letter-spacing: 1px;
+            background: rgba(0, 0, 0, 0.65);
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        /* Mythological Button Bar */
+        .yamlok-buttons {
+            display: flex;
+            gap: 6px;
+            margin-top: 8px;
+            flex-wrap: wrap;
+        }
+
+        .realm-btn {
+            background: rgba(15, 2, 5, 0.85);
+            border: 1px solid var(--main-red);
+            color: #ffe0e0;
+            padding: 6px 10px;
+            font-size: 11px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-weight: bold;
+            text-transform: uppercase;
+            box-shadow: 0 0 5px rgba(255, 0, 60, 0.3);
+            transition: all 0.2s ease;
+        }
+
+        .realm-btn:hover, .realm-btn:active {
+            background: var(--main-red);
+            color: #000;
+            box-shadow: 0 0 12px var(--glow-red);
         }
 
         #terminal {
             flex-grow: 1;
             overflow-y: auto;
-            margin: 15px 0;
-            padding-right: 5px;
+            margin: 10px 0;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.60);
+            border-radius: 6px;
+            backdrop-filter: blur(2px);
+            border: 1px solid rgba(255, 0, 60, 0.2);
         }
 
         .line {
@@ -59,9 +93,10 @@
             word-break: break-word;
         }
 
-        .cmd-line { color: #00f0ff; }
+        .cmd-line { color: #00f0ff; font-weight: bold; }
         .sys-msg { color: var(--main-red); font-weight: bold; }
-        .code-matrix { color: #00ff66; font-size: 13px; opacity: 0.85; }
+        .code-matrix { color: #00ff66; font-size: 13px; font-weight: bold; }
+        
         .yamraj-msg { 
             color: #ffcc00; 
             border-left: 3px solid var(--main-red); 
@@ -71,12 +106,20 @@
             text-shadow: 0 0 5px #ffcc00;
         }
 
+        .chitragupta-msg {
+            color: #00f0ff;
+            border-left: 3px solid #00f0ff;
+            padding-left: 8px;
+            margin: 8px 0;
+            font-weight: bold;
+        }
+
         .ascii-title {
             color: var(--main-red);
             white-space: pre;
             font-size: 10px;
             line-height: 1.1;
-            margin: 10px 0;
+            margin: 6px 0;
             text-shadow: 0 0 8px var(--glow-red);
             font-weight: bold;
         }
@@ -84,9 +127,10 @@
         .input-area {
             display: flex;
             align-items: center;
-            border-top: 1px solid var(--dark-red);
-            padding-top: 10px;
-            background: rgba(0,0,0,0.5);
+            border: 1px solid var(--main-red);
+            border-radius: 4px;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.80);
         }
 
         .prompt {
@@ -100,35 +144,41 @@
             background: transparent;
             border: none;
             color: #fff;
-            font-size: 16px;
+            font-size: 15px;
             flex-grow: 1;
             outline: none;
         }
-
-        #terminal::-webkit-scrollbar { width: 4px; }
-        #terminal::-webkit-scrollbar-thumb { background: var(--main-red); }
     </style>
 </head>
 <body>
 
     <div class="header">
         <span>❖ Mʀ᭄YAMRAJ ࿐</span>
-        <span>DEATH NOTE REALM v7.0</span>
+        <span>YAMLOK REALM OS v8.0</span>
+    </div>
+
+    <!-- Mythological Option Buttons -->
+    <div class="yamlok-buttons">
+        <button class="realm-btn" onclick="triggerBtn('deathnote')">🩸 Death Note</button>
+        <button class="realm-btn" onclick="triggerBtn('chitragupta')">📜 Chitragupta Logs</button>
+        <button class="realm-btn" onclick="triggerBtn('yamdoot')">⚔️ Yamdoot Forces</button>
+        <button class="realm-btn" onclick="triggerBtn('yamraj')">👑 Yamraj Throne</button>
+        <button class="realm-btn" onclick="triggerBtn('yamlok')">🔥 Yamlok Gates</button>
+        <button class="realm-btn" onclick="triggerBtn('clear')">🧹 Clear</button>
     </div>
 
     <div id="terminal">
         <div class="ascii-title">
- ☠︎ MR. YAMRAJ DEATH NOTE REALM ☠︎
-===================================
+ ☠︎ YAMLOK DIGITAL REALM // MR YAMRAJ ☠︎
+==========================================
         </div>
-        <div class="line sys-msg">=== YAMRAJ DIGITAL REALM ACTIVATED ===</div>
-        <div class="line">Type <span style="color:#00f0ff">'help'</span> to view available realm protocols.</div>
-        <div class="line">Type <span style="color:var(--main-red)">'deathnote [Name]'</span> to register target in Death Note.</div>
+        <div class="line sys-msg">=== YAMLOK REALM ONLINE // CHITRAGUPTA RECORDS ACTIVE ===</div>
+        <div class="line">Click option buttons above or type commands below.</div>
     </div>
 
     <div class="input-area">
-        <span class="prompt">yamraj@deathnote:~$</span>
-        <input type="text" id="commandInput" autofocus autocomplete="off">
+        <span class="prompt">yamraj@yamlok:~$</span>
+        <input type="text" id="commandInput" placeholder="Type: deathnote [Name] or click buttons" autofocus autocomplete="off">
     </div>
 
     <script>
@@ -141,7 +191,7 @@
                 input.value = '';
                 if (!value) return;
 
-                printLine(`yamraj@deathnote:~$ ${value}`, 'cmd-line');
+                printLine(`yamraj@yamlok:~$ ${value}`, 'cmd-line');
                 processCommand(value);
             }
         });
@@ -154,23 +204,78 @@
             terminal.scrollTop = terminal.scrollHeight;
         }
 
+        function triggerBtn(action) {
+            if (action === 'deathnote') {
+                let name = prompt("Enter Target Name for Death Note / Yamlok Judgment:");
+                if (name && name.trim() !== "") {
+                    printLine(`yamraj@yamlok:~$ deathnote ${name}`, 'cmd-line');
+                    startDeathNoteExecution(name.trim());
+                }
+                return;
+            }
+
+            if (action === 'chitragupta') {
+                let name = prompt("Enter Name to Scan Karmic Account (Chitragupta Book):");
+                if (name && name.trim() !== "") {
+                    printLine(`yamraj@yamlok:~$ chitragupta ${name}`, 'cmd-line');
+                    scanChitraguptaLogs(name.trim());
+                } else {
+                    scanChitraguptaLogs("GLOBAL");
+                }
+                return;
+            }
+
+            if (action === 'yamdoot') {
+                printLine(`yamraj@yamlok:~$ yamdoot status`, 'cmd-line');
+                printLine(`⚔️ [YAMDOOT FORCE STATUS]:<br> • Active Squads: 108 Squadrons<br> • Current Mission: Fetching Soul Logs & Executing Yamraj Decrees<br> • Status: READY FOR ORDERS`, 'sys-msg');
+                return;
+            }
+
+            if (action === 'yamraj') {
+                printLine(`yamraj@yamlok:~$ yamraj throne`, 'cmd-line');
+                printLine(`👑 [SUPREME REALM LORD]: Mʀ᭄YAMRAJ ࿐<br> • Throne: Yamlok Central Court<br> • Decree: Eternal & Unbreakable<br> • Status: Observing Earthly Karmic Logs...`, 'yamraj-msg');
+                return;
+            }
+
+            if (action === 'yamlok') {
+                printLine(`yamraj@yamlok:~$ yamlok status`, 'cmd-line');
+                printLine(`🔥 [YAMLOK REALM GATES]:<br> • Gate 1: Maharaurava [ACTIVE]<br> • Gate 2: Kumbhipaka [ACTIVE]<br> • Gate 3: Raurava [STANDBY]<br> • Security: Sealed by Lord Yamraj`, 'chitragupta-msg');
+                return;
+            }
+
+            if (action === 'clear') {
+                terminal.innerHTML = '';
+                return;
+            }
+        }
+
         function processCommand(cmdStr) {
             const parts = cmdStr.split(' ');
             const mainCmd = parts[0].toLowerCase();
             const args = parts.slice(1).join(' ');
 
             if (mainCmd === 'help') {
-                printLine(`AVAILABLE PROTOCOLS:<br> • <b style="color:var(--main-red)">deathnote [Name]</b> - Execute Death Note Execution Script<br> • <b>about</b> - Yamraj Realm Specs<br> • <b>yamdoot</b> - Yamdoot Bot Protocol<br> • <b>clear</b> - Clear terminal screen`);
+                printLine(`YAMLOK PROTOCOLS:<br> • <b>deathnote [Name]</b> - Trigger Yamdoot & Yamraj Judgment<br> • <b>chitragupta [Name]</b> - Inspect Karma Records<br> • <b>yamdoot</b> - View Squad Status<br> • <b>yamraj</b> - Lord Yamraj Specs<br> • <b>yamlok</b> - Realm Gate Status<br> • <b>clear</b> - Clear terminal screen`);
                 return;
             }
 
-            if (mainCmd === 'about') {
-                printLine(`[REALM LORD] Mʀ᭄YAMRAJ ࿐<br>Status: Controlling Life & Death Logs from Shadows...`);
+            if (mainCmd === 'chitragupta') {
+                scanChitraguptaLogs(args || "GLOBAL");
+                return;
+            }
+
+            if (mainCmd === 'yamraj') {
+                triggerBtn('yamraj');
                 return;
             }
 
             if (mainCmd === 'yamdoot') {
-                printLine(`[YAMDOOT BOT PROTOCOL]<br>Status: Standby for Execution Orders.`);
+                triggerBtn('yamdoot');
+                return;
+            }
+
+            if (mainCmd === 'yamlok') {
+                triggerBtn('yamlok');
                 return;
             }
 
@@ -184,12 +289,19 @@
                     printLine('⚠️ ERROR: Name required! Usage: deathnote [Name]', 'sys-msg');
                     return;
                 }
-
                 startDeathNoteExecution(args);
                 return;
             }
 
             printLine(`Command not recognized: '${mainCmd}'`, 'sys-msg');
+        }
+
+        function scanChitraguptaLogs(targetName) {
+            printLine(`📜 [CHITRAGUPTA LOGS]: Opening Agrasandhani (Book of Karma) for target: <b>${targetName}</b>...`, 'chitragupta-msg');
+            setTimeout(() => {
+                printLine(`>> FETCHING SINS & DEEDS DATA_HEX... [100%]`, 'code-matrix');
+                printLine(`>> KARMA SCORE CALCULATED: DESTINY WRITTEN IN DEATH NOTE.`, 'chitragupta-msg');
+            }, 800);
         }
 
         function startDeathNoteExecution(targetName) {
@@ -229,3 +341,4 @@
     </script>
 </body>
 </html>
+
