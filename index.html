@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>LORD YAMRAJ // YAMLOK DHARMARAJ MULTI-REALM OS</title>
+    <title>LORD YAMRAJ // YAMLOK DHARMARAJ ULTIMATE REALM OS</title>
     <style>
         :root {
             --main-red: #ff003c;
@@ -11,7 +11,7 @@
             --glow-red: #ff2a2a;
             --gold: #ffd700;
             --gold-glow: #ffaa00;
-            --bg-overlay: rgba(5, 0, 2, 0.55);
+            --bg-overlay: rgba(5, 0, 2, 0.60);
             --font: 'Courier New', Courier, monospace;
         }
 
@@ -47,23 +47,20 @@
             color: var(--gold);
             font-weight: bold;
             text-shadow: 0 0 8px var(--gold-glow);
-            background: rgba(10, 0, 3, 0.88);
+            background: rgba(10, 0, 3, 0.90);
             padding: 8px 12px;
             border-radius: 6px;
-            font-size: 13px;
+            font-size: 12px;
             box-shadow: 0 0 12px rgba(255, 215, 0, 0.25);
         }
 
-        .header .sub-title {
-            color: var(--main-red);
-            font-size: 11px;
-        }
+        .header .sub-title { color: var(--main-red); font-size: 11px; }
 
-        /* Tab Navigation Bar (Multi-Page Selector) */
+        /* Multi-Page Tabs */
         .nav-tabs {
             display: flex;
             gap: 4px;
-            margin-top: 8px;
+            margin-top: 6px;
             overflow-x: auto;
             padding-bottom: 4px;
         }
@@ -72,8 +69,8 @@
             background: linear-gradient(180deg, rgba(30, 0, 8, 0.9), rgba(10, 0, 3, 0.95));
             border: 1px solid var(--main-red);
             color: #ffe0e0;
-            padding: 8px 12px;
-            font-size: 11px;
+            padding: 7px 10px;
+            font-size: 10px;
             cursor: pointer;
             border-radius: 5px;
             font-weight: bold;
@@ -93,9 +90,9 @@
         /* Main View Container */
         .view-panel {
             flex-grow: 1;
-            margin: 8px 0;
-            padding: 12px;
-            background: rgba(0, 0, 0, 0.75);
+            margin: 6px 0;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.80);
             border-radius: 6px;
             backdrop-filter: blur(4px);
             border: 1px solid rgba(255, 215, 0, 0.3);
@@ -103,27 +100,20 @@
             display: none;
         }
 
-        .view-panel.active {
-            display: flex;
-            flex-direction: column;
-        }
+        .view-panel.active { display: flex; flex-direction: column; }
 
-        /* Terminal Line Styles */
-        #terminal-lines {
-            flex-grow: 1;
-            overflow-y: auto;
-        }
-
-        .line { margin-bottom: 6px; line-height: 1.4; word-break: break-word; font-size: 13px; }
+        /* Terminal Lines */
+        #terminal-lines { flex-grow: 1; overflow-y: auto; }
+        .line { margin-bottom: 5px; line-height: 1.4; word-break: break-word; font-size: 12px; }
         .cmd-line { color: #00f0ff; font-weight: bold; }
         .sys-msg { color: var(--main-red); font-weight: bold; }
-        .code-matrix { color: #00ff66; font-size: 12px; font-weight: bold; }
+        .code-matrix { color: #00ff66; font-size: 11px; font-weight: bold; }
         
         .yamraj-msg { 
             color: var(--gold); 
             border-left: 3px solid var(--gold); 
             padding-left: 8px; 
-            margin: 8px 0;
+            margin: 6px 0;
             font-weight: bold;
             background: rgba(255, 215, 0, 0.08);
             text-shadow: 0 0 5px var(--gold-glow);
@@ -133,18 +123,18 @@
             color: #00f0ff;
             border-left: 3px solid #00f0ff;
             padding-left: 8px;
-            margin: 8px 0;
+            margin: 6px 0;
             font-weight: bold;
             background: rgba(0, 240, 255, 0.08);
         }
 
-        /* Interactive UI Cards inside Panels */
+        /* UI Cards */
         .card {
-            background: rgba(20, 0, 5, 0.85);
+            background: rgba(20, 0, 5, 0.90);
             border: 1px solid var(--main-red);
             border-radius: 6px;
             padding: 10px;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
         .card-header {
@@ -153,25 +143,36 @@
             border-bottom: 1px solid var(--dark-red);
             padding-bottom: 4px;
             margin-bottom: 8px;
-            font-size: 14px;
+            font-size: 13px;
         }
 
-        /* Progress / Karma Bar */
-        .progress-bar-bg {
-            background: #222;
-            height: 12px;
+        /* Countdown Timer Box */
+        .timer-display {
+            background: #000;
+            border: 1px solid var(--main-red);
+            color: var(--main-red);
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            padding: 10px;
             border-radius: 6px;
-            overflow: hidden;
-            border: 1px solid var(--gold);
-            margin: 6px 0;
+            letter-spacing: 2px;
+            margin-top: 8px;
+            text-shadow: 0 0 10px var(--glow-red);
         }
 
-        .progress-fill {
-            height: 100%;
-            width: 50%;
-            background: linear-gradient(90deg, var(--main-red), var(--gold));
-            transition: width 0.5s ease;
+        /* Warrant Card */
+        .warrant-card {
+            background: linear-gradient(135deg, #100003, #250008);
+            border: 2px solid var(--gold);
+            border-radius: 8px;
+            padding: 12px;
+            margin-top: 10px;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+            display: none;
         }
+
+        .warrant-card h3 { color: var(--gold); text-align: center; font-size: 14px; margin-bottom: 8px; }
 
         /* Input Bar */
         .input-area {
@@ -180,23 +181,45 @@
             border: 1px solid var(--gold);
             border-radius: 6px;
             padding: 8px 10px;
-            background: rgba(0, 0, 0, 0.90);
+            background: rgba(0, 0, 0, 0.95);
             box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
         }
 
-        .prompt { color: var(--gold); margin-right: 6px; font-weight: bold; font-size: 13px; }
-        input { background: transparent; border: none; color: #fff; font-size: 14px; flex-grow: 1; outline: none; }
+        .prompt { color: var(--gold); margin-right: 6px; font-weight: bold; font-size: 12px; }
+        input, select { background: transparent; border: 1px solid var(--dark-red); color: #fff; font-size: 13px; outline: none; border-radius: 4px; padding: 4px 6px; }
+        input[type="text"] { flex-grow: 1; border: none; }
         
         .action-btn {
             background: var(--main-red);
             color: #fff;
             border: none;
-            padding: 6px 12px;
-            font-size: 12px;
+            padding: 7px 12px;
+            font-size: 11px;
             border-radius: 4px;
             font-weight: bold;
             cursor: pointer;
             margin-top: 6px;
+        }
+
+        .sound-btn {
+            background: rgba(255, 215, 0, 0.15);
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 3px 6px;
+            font-size: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        /* Flash Overlay */
+        #flash-overlay {
+            position: fixed;
+            top:0; left:0; width:100vw; height:100vh;
+            background: var(--main-red);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.1s ease;
+            z-index: 999;
         }
 
         ::-webkit-scrollbar { width: 3px; height: 3px; }
@@ -205,79 +228,101 @@
 </head>
 <body>
 
+    <div id="flash-overlay"></div>
+
     <div class="header">
         <span>❖ LORD YAMRAJ DHARMARAJ ❖</span>
-        <span class="sub-title">YAMLOK REALM v10.0</span>
+        <span class="sub-title">SOULS TRANSIT: <b id="soulCount">1,084,291</b></span>
+        <button class="sound-btn" onclick="playChantSound()">🔊 Chant Sound</button>
     </div>
 
     <!-- Multi-Page Tabs Navigation -->
     <div class="nav-tabs">
         <button class="tab-btn active" onclick="switchTab('terminal-view')">🖥️ Main Console</button>
+        <button class="tab-btn" onclick="switchTab('timer-view')">⏳ Remaining Life Clock</button>
         <button class="tab-btn" onclick="switchTab('chitragupta-view')">📜 Chitragupta Ledger</button>
-        <button class="tab-btn" onclick="switchTab('vaitarani-view')">🌊 Vaitarani & Gates</button>
-        <button class="tab-btn" onclick="switchTab('yamdoot-view')">⚔️ Yamdoot Forces</button>
-        <button class="tab-btn" onclick="switchTab('court-view')">👑 Dharmaraj Court</button>
+        <button class="tab-btn" onclick="switchTab('naraka-view')">👹 28 Naraka List</button>
+        <button class="tab-btn" onclick="switchTab('warrant-view')">🪪 Death Warrant</button>
     </div>
 
     <!-- PAGE 1: Terminal Console -->
     <div id="terminal-view" class="view-panel active">
         <div id="terminal-lines">
-            <div class="line sys-msg">=== DHARMARAJ YAMLOK MULTI-REALM OS ONLINE ===</div>
-            <div class="line" style="color:var(--gold)">• Select tabs above or type target name below for judgment.</div>
+            <div class="line sys-msg">=== DHARMARAJ YAMLOK ULTIMATE REALM ONLINE ===</div>
+            <div class="line" style="color:var(--gold)">• Type any target name below or check remaining life clock in tabs.</div>
         </div>
     </div>
 
-    <!-- PAGE 2: Chitragupta Ledger -->
+    <!-- PAGE 2: Remaining Life Timer Calculator -->
+    <div id="timer-view" class="view-panel">
+        <div class="card">
+            <div class="card-header">⏳ CHITRAGUPTA LIFE EXPECTANCY CALCULATOR (आयुष गणना)</div>
+            <p style="font-size:11px; color:#ccc; margin-bottom:8px;">Enter details to calculate remaining time on Prithvi Lok:</p>
+            
+            <label style="font-size:11px;">Target Name:</label>
+            <input type="text" id="lifeName" placeholder="e.g. Rahul Sharma" style="width:100%; margin-bottom:6px; border: 1px solid var(--gold);">
+            
+            <label style="font-size:11px;">Current Age:</label>
+            <input type="number" id="lifeAge" value="22" style="width:100%; margin-bottom:6px; border: 1px solid var(--gold);">
+
+            <label style="font-size:11px;">Sin/Paap Score (1 to 100):</label>
+            <input type="number" id="lifeSin" value="75" style="width:100%; margin-bottom:8px; border: 1px solid var(--gold);">
+
+            <button class="action-btn" onclick="calculateRemainingLife()">Calculate Remaining Time</button>
+
+            <div id="timerOutput" class="timer-display" style="display:none;">
+                00Y : 00D : 00H : 00M : 00S
+            </div>
+            <p id="timerMessage" style="font-size:11px; color:var(--gold); margin-top:6px; text-align:center;"></p>
+        </div>
+    </div>
+
+    <!-- PAGE 3: Chitragupta Ledger -->
     <div id="chitragupta-view" class="view-panel">
         <div class="card">
             <div class="card-header">📜 CHITRAGUPTA AGRASANDHANI (चित्रगुप्त खाता)</div>
-            <p style="font-size:12px; color:#aaa;">Inspect target's Karma (Pap vs Punya) balance score:</p>
-            <br>
-            <input type="text" id="karmaTarget" placeholder="Enter target name..." style="border: 1px solid var(--gold); padding: 6px; width: 100%; border-radius:4px; margin-bottom:8px;">
+            <input type="text" id="karmaTarget" placeholder="Enter target name..." style="width: 100%; border: 1px solid var(--gold); margin-bottom:6px;">
             <button class="action-btn" onclick="calculateKarma()">Scan Karmic Balance</button>
-            <div id="karmaResult" style="margin-top:12px;"></div>
+            <div id="karmaResult" style="margin-top:10px;"></div>
         </div>
     </div>
 
-    <!-- PAGE 3: Vaitarani & Realm Gates -->
-    <div id="vaitarani-view" class="view-panel">
+    <!-- PAGE 4: 28 Naraka List -->
+    <div id="naraka-view" class="view-panel">
         <div class="card">
-            <div class="card-header">🌊 VAITARANI RIVER REALM (वैतरणी नदी व द्वार)</div>
-            <p style="font-size:12px; margin-bottom:8px;">River Status: <b style="color:var(--main-red)">Boiling Flames & Acid Current [ACTIVE]</b></p>
-            <div class="card-header" style="font-size:12px; margin-top:10px;">YAMLOK 4 MAIN GATES:</div>
-            <ul style="font-size:12px; padding-left:15px; color:#ffdddd;">
-                <li><b>Purva Dwar (पूर्व द्वार):</b> Reserved for Virtuous Souls / Swarga Transit.</li>
-                <li><b>Paschim Dwar (पश्चिम द्वार):</b> Karma Audit Gate (Chitragupta Inspection).</li>
-                <li><b>Uttar Dwar (उत्तर द्वार):</b> Reserved for Sages and Yogis.</li>
-                <li><b>Dakshin Dwar (दक्षिण द्वार):</b> Yamdoot Execution Gate for Sinners [SEALED BY YAMRAJ].</li>
-            </ul>
+            <div class="card-header">👹 28 NARAKA PUNISHMENT SELECTOR</div>
+            <select id="narakaSelect" style="width:100%; background:#100003; color:var(--gold);" onchange="showNarakaInfo()">
+                <option value="kumbhipaka">1. Kumbhipaka (कुम्भीपाक) - Boiling Oil</option>
+                <option value="raurava">2. Raurava (रौरव) - Serpent Torment</option>
+                <option value="maharaurava">3. Maharaurava (महारौरव) - Flame Cavern</option>
+                <option value="vaitarani">4. Vaitarani (वैतरणी) - Blood & Acid River</option>
+                <option value="tamisra">5. Tamisra (तामिस्र) - Dark Abyss</option>
+            </select>
+            <div id="narakaDetails" style="margin-top:10px; font-size:12px; color:#ffcccc;" class="chitragupta-msg">
+                Select a Naraka to view Chitragupta's punishment decree.
+            </div>
         </div>
     </div>
 
-    <!-- PAGE 4: Yamdoot Forces -->
-    <div id="yamdoot-view" class="view-panel">
+    <!-- PAGE 5: Death Warrant Generator -->
+    <div id="warrant-view" class="view-panel">
         <div class="card">
-            <div class="card-header">⚔️ YAMDOOT DISPATCH TRACKER</div>
-            <p style="font-size:12px;">Commander: <b>Kaladuta (कालदूत)</b></p>
-            <p style="font-size:12px; color:#00ff66;">Active Squadrons: 108 Squads on Prithvi Lok</p>
-            <br>
-            <button class="action-btn" onclick="dispatchYamdoot()">Simulate Soul Extraction Dispatch</button>
-            <div id="yamdootDispatchLog" style="margin-top:10px; font-size:12px;"></div>
+            <div class="card-header">🪪 YAMLOK OFFICIAL DEATH WARRANT</div>
+            <input type="text" id="warrantName" placeholder="Enter target name..." style="width:100%; border:1px solid var(--gold); margin-bottom:6px;">
+            <button class="action-btn" onclick="generateDeathWarrant()">Generate Death Warrant</button>
+
+            <div id="warrantBox" class="warrant-card">
+                <h3>☠︎ OFFICIAL YAMLOK DEATH WARRANT ☠︎</h3>
+                <p style="font-size:12px; border-bottom:1px solid #400; padding-bottom:4px;"><b>TARGET:</b> <span id="wNameDisplay" style="color:#fff;">-</span></p>
+                <p style="font-size:12px; margin-top:4px;"><b>DECREE BY:</b> Lord Yamraj Dharmaraj</p>
+                <p style="font-size:12px;"><b>AUDITED BY:</b> Maharishi Chitragupta</p>
+                <p style="font-size:12px;"><b>EXECUTION GATE:</b> <span id="wGateDisplay" style="color:var(--main-red)">Kumbhipaka Gate</span></p>
+                <p style="font-size:11px; color:var(--gold); margin-top:8px; text-align:center;">[SEALED WITH DHARMARAJ KALADANDA ☸︎]</p>
+            </div>
         </div>
     </div>
 
-    <!-- PAGE 5: Dharmaraj Court -->
-    <div id="court-view" class="view-panel">
-        <div class="card">
-            <div class="card-header">👑 DHARMARAJ SUPREME COURT DECREE</div>
-            <p style="font-size:13px; color:var(--gold); font-weight:bold;">"धर्मो रक्षति रक्षितः" - Law of Lord Yamraj is Unbreakable.</p>
-            <br>
-            <p style="font-size:12px;">Throne Room: <b>Yamapuri Court of Eternal Justice</b></p>
-            <p style="font-size:12px;">Supreme Weapon: <b>Kaladanda (कालदण्ड)</b></p>
-        </div>
-    </div>
-
-    <!-- Global Input Bar -->
+    <!-- Input Bar -->
     <div class="input-area">
         <span class="prompt">yamraj@yamlok:~$</span>
         <input type="text" id="commandInput" placeholder="Enter target name..." autofocus autocomplete="off">
@@ -286,6 +331,63 @@
     <script>
         const input = document.getElementById('commandInput');
         const terminalLines = document.getElementById('terminal-lines');
+        let countdownInterval = null;
+
+        // Sound Effects via Web Audio API
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+        function playBeepSound() {
+            try {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(300, audioCtx.currentTime);
+                gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.05);
+            } catch(e){}
+        }
+
+        function playThunderSound() {
+            try {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'square';
+                osc.frequency.setValueAtTime(80, audioCtx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(20, audioCtx.currentTime + 0.5);
+                gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.5);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.5);
+            } catch(e){}
+        }
+
+        function playChantSound() {
+            try {
+                if (audioCtx.state === 'suspended') audioCtx.resume();
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(136.1, audioCtx.currentTime); // Om Frequency
+                gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 2.5);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 2.5);
+            } catch(e){}
+        }
+
+        function triggerRedFlash() {
+            const overlay = document.getElementById('flash-overlay');
+            overlay.style.opacity = '0.6';
+            playThunderSound();
+            setTimeout(() => overlay.style.opacity = '0', 150);
+        }
 
         function switchTab(tabId) {
             document.querySelectorAll('.view-panel').forEach(el => el.classList.remove('active'));
@@ -301,6 +403,7 @@
                 input.value = '';
                 if (!value) return;
 
+                playBeepSound();
                 switchTab('terminal-view');
                 printLine(`yamraj@yamlok:~$ ${value}`, 'cmd-line');
                 startDeathNoteExecution(value);
@@ -315,31 +418,78 @@
             terminalLines.scrollTop = terminalLines.scrollHeight;
         }
 
+        // Remaining Life Calculator
+        function calculateRemainingLife() {
+            const name = document.getElementById('lifeName').value.trim() || 'Target';
+            const age = parseInt(document.getElementById('lifeAge').value) || 20;
+            const sin = parseInt(document.getElementById('lifeSin').value) || 50;
+
+            if (countdownInterval) clearInterval(countdownInterval);
+
+            // Remaining years formula based on sin
+            let remainingYears = Math.max(1, Math.floor((100 - age) * (1 - (sin / 120))));
+            let totalSeconds = remainingYears * 365 * 24 * 3600;
+
+            document.getElementById('timerOutput').style.display = 'block';
+
+            countdownInterval = setInterval(() => {
+                if (totalSeconds <= 0) {
+                    clearInterval(countdownInterval);
+                    document.getElementById('timerOutput').innerHTML = "00Y : 00D : 00H : 00M : 00S";
+                    document.getElementById('timerMessage').innerText = `🚨 TIME EXPIRED FOR ${name.toUpperCase()}! YAMDOOT DISPATCHED!`;
+                    return;
+                }
+
+                totalSeconds--;
+                let y = Math.floor(totalSeconds / (365 * 24 * 3600));
+                let d = Math.floor((totalSeconds % (365 * 24 * 3600)) / (24 * 3600));
+                let h = Math.floor((totalSeconds % (24 * 3600)) / 3600);
+                let m = Math.floor((totalSeconds % 3600) / 60);
+                let s = totalSeconds % 60;
+
+                document.getElementById('timerOutput').innerText = 
+                    `${String(y).padStart(2, '0')}Y : ${String(d).padStart(3, '0')}D : ${String(h).padStart(2, '0')}H : ${String(m).padStart(2, '0')}M : ${String(s).padStart(2, '0')}S`;
+            }, 1000);
+
+            document.getElementById('timerMessage').innerText = `📜 Chitragupta Decree: ${name}'s Prithvi Lok time running out based on Sin Score ${sin}%`;
+        }
+
         function calculateKarma() {
             const name = document.getElementById('karmaTarget').value.trim() || 'TARGET';
             const res = document.getElementById('karmaResult');
-            
-            const sinPercent = Math.floor(Math.random() * 40) + 60; // 60-100% Sin for dramatic effect
-            const punyaPercent = 100 - sinPercent;
-
+            const sinPercent = Math.floor(Math.random() * 40) + 60;
             res.innerHTML = `
                 <div style="font-size:12px;"><b>Target:</b> ${name}</div>
                 <div style="font-size:12px; color:var(--main-red);">Paap (Sins): ${sinPercent}%</div>
-                <div class="progress-bar-bg"><div class="progress-fill" style="width:${sinPercent}%"></div></div>
-                <div style="font-size:12px; color:#00ff66;">Punya (Virtues): ${punyaPercent}%</div>
+                <div style="font-size:12px; color:#00ff66;">Punya (Virtues): ${100 - sinPercent}%</div>
                 <div class="chitragupta-msg" style="margin-top:6px;">Verdict: Transferred to Yamraj Death Note Log!</div>
             `;
         }
 
-        function dispatchYamdoot() {
-            const log = document.getElementById('yamdootDispatchLog');
-            log.innerHTML = `<b style="color:var(--gold)">[YAMDOOT DISPATCHED]:</b> Squad #09 initialized. Fetching Soul ID from Prithvi Lok...`;
-            setTimeout(() => {
-                log.innerHTML += `<br><b style="color:#00ff66">[STATUS]:</b> Soul bound with Kalapasa (कालपाश) & crossing Vaitarani River.`;
-            }, 1500);
+        function showNarakaInfo() {
+            const val = document.getElementById('narakaSelect').value;
+            const details = document.getElementById('narakaDetails');
+            
+            const info = {
+                kumbhipaka: "Boiling oil cauldrons for those who harmed innocent lives.",
+                raurava: "Serpent pit for deceptive and betraying souls.",
+                maharaurava: "Cavern of unyielding fire for severe cosmic sin transgressors.",
+                vaitarani: "Boiling blood and acid river crossed only by righteous deeds.",
+                tamisra: "Total pitch black darkness for robbers and thieves."
+            };
+
+            details.innerText = `Chitragupta Decree: ${info[val]}`;
+        }
+
+        function generateDeathWarrant() {
+            const name = document.getElementById('warrantName').value.trim() || 'Target Sinner';
+            document.getElementById('wNameDisplay').innerText = name.toUpperCase();
+            document.getElementById('warrantBox').style.display = 'block';
+            triggerRedFlash();
         }
 
         function startDeathNoteExecution(targetName) {
+            triggerRedFlash();
             printLine(`📜 [CHITRAGUPTA LOG]: Opening Karma File for: <b>${targetName}</b>...`, 'chitragupta-msg');
             
             setTimeout(() => {
@@ -348,7 +498,7 @@
                 const randomCodes = [
                     `0x99A_SEARCH_LIFE_KARMA // TARGET: ${targetName}`,
                     `FETCH_SOUL_ID --user="${targetName}" --realm=YAMLOK`,
-                    `OVERRIDING_PRANA_PROTOCOL_v10.0... [OK]`,
+                    `OVERRIDING_PRANA_PROTOCOL_v11.0... [OK]`,
                     `DISPATCHING_YAMDOOT_SQUAD...`,
                     `LOGGING_DEATH_TIMESTAMP: ${new Date().toLocaleString()}`,
                     `DESTINY_LOG_SEALED_BY_DHARMARAJ: 0x0000_SOUL_TRANSFERRED`
@@ -358,9 +508,11 @@
                 const codeInterval = setInterval(() => {
                     if (count < randomCodes.length) {
                         printLine(`>> ${randomCodes[count]}`, 'code-matrix');
+                        playBeepSound();
                         count++;
                     } else {
                         clearInterval(codeInterval);
+                        triggerRedFlash();
                         setTimeout(() => {
                             printLine(`⚡ [DHARMARAJ DECREE EXECUTED]: <br>⚔️ YAMDOOT: "${targetName.toUpperCase()} IS PRESENTED BEFORE LORD YAMRAJ!"`, 'yamraj-msg');
                         }, 1000);
@@ -368,6 +520,16 @@
                 }, 300);
             }, 800);
         }
+
+        // Live Fake Soul Transit Counter Increment
+        setInterval(() => {
+            const el = document.getElementById('soulCount');
+            if (el) {
+                let current = parseInt(el.innerText.replace(/,/g, ''));
+                current += Math.floor(Math.random() * 5) + 1;
+                el.innerText = current.toLocaleString();
+            }
+        }, 3000);
     </script>
 </body>
 </html>
