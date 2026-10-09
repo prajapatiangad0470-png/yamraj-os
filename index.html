@@ -3,17 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>LORD YAMRAJ // YAMLOK DHARMARAJ ULTIMATE REALM OS</title>
-    <!-- HTML2Canvas Library for Image Downloading -->
+    <title>LORD YAMRAJ // YAMLOK LAVA REALM OS</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
         :root {
-            --main-red: #ff0022;
-            --dark-red: #2a0005;
-            --glow-red: #ff1100;
+            --lava-red: #ff2200;
+            --lava-orange: #ff6600;
+            --lava-yellow: #ffcc00;
+            --dark-realm: #0a0002;
             --gold: #ffd700;
-            --gold-glow: #ffaa00;
-            --bg-overlay: rgba(8, 0, 2, 0.75);
             --font: 'Courier New', Courier, monospace;
         }
 
@@ -27,16 +25,40 @@
 
         body {
             background-color: #000;
-            background-image: linear-gradient(var(--bg-overlay), var(--bg-overlay)), url('yamraj.jpg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
             color: #fff;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             padding: 8px;
             overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated Boiling Lava Background Layer */
+        .lava-container {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            z-index: -1;
+            background: linear-gradient(180deg, rgba(10,0,2,0.85) 0%, rgba(40,5,0,0.92) 50%, rgba(100,10,0,0.98) 100%), url('yamraj.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .lava-waves {
+            position: fixed;
+            bottom: 0; left: 0;
+            width: 100vw; height: 180px;
+            z-index: -1;
+            background: radial-gradient(circle at 50% 100%, #ff3300, #990000 60%, transparent 80%);
+            opacity: 0.8;
+            animation: lavaPulse 2.5s infinite alternate ease-in-out;
+            pointer-events: none;
+        }
+
+        @keyframes lavaPulse {
+            0% { transform: scaleY(1); opacity: 0.7; filter: drop-shadow(0 0 15px #ff2200); }
+            100% { transform: scaleY(1.2); opacity: 0.95; filter: drop-shadow(0 0 35px #ff6600); }
         }
 
         /* Fiery Header */
@@ -44,16 +66,16 @@
             border: 2px solid var(--gold);
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 4px;
             align-items: center;
             color: var(--gold);
             font-weight: bold;
-            text-shadow: 0 0 10px var(--gold-glow);
+            text-shadow: 0 0 12px var(--lava-orange);
             background: rgba(15, 0, 3, 0.95);
             padding: 10px;
             border-radius: 8px;
             font-size: 13px;
-            box-shadow: 0 0 18px rgba(255, 0, 34, 0.5), inset 0 0 10px rgba(255, 215, 0, 0.3);
+            box-shadow: 0 0 20px rgba(255, 34, 0, 0.6), inset 0 0 10px rgba(255, 215, 0, 0.4);
             text-align: center;
         }
 
@@ -66,12 +88,12 @@
 
         .sanskrit-motto {
             font-size: 11px;
-            color: var(--main-red);
+            color: var(--lava-yellow);
             letter-spacing: 1px;
-            text-shadow: 0 0 5px var(--glow-red);
+            text-shadow: 0 0 8px var(--lava-red);
         }
 
-        /* Mobile Responsive Grid Navigation */
+        /* Mobile Grid Tabs */
         .nav-tabs {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -81,14 +103,12 @@
         }
 
         @media (min-width: 600px) {
-            .nav-tabs {
-                grid-template-columns: repeat(5, 1fr);
-            }
+            .nav-tabs { grid-template-columns: repeat(5, 1fr); }
         }
 
         .tab-btn {
-            background: linear-gradient(180deg, rgba(40, 0, 8, 0.95), rgba(10, 0, 3, 0.98));
-            border: 1px solid var(--main-red);
+            background: linear-gradient(180deg, rgba(60, 5, 0, 0.95), rgba(15, 0, 3, 0.98));
+            border: 1px solid var(--lava-orange);
             color: #ffe0e0;
             padding: 10px 6px;
             font-size: 11px;
@@ -97,15 +117,15 @@
             font-weight: bold;
             text-align: center;
             text-transform: uppercase;
-            box-shadow: 0 0 8px rgba(255, 0, 34, 0.4);
+            box-shadow: 0 0 10px rgba(255, 34, 0, 0.4);
             transition: all 0.2s ease;
         }
 
         .tab-btn.active {
-            background: var(--gold);
+            background: linear-gradient(180deg, var(--gold), var(--lava-orange));
             color: #000;
             border-color: var(--gold);
-            box-shadow: 0 0 15px var(--gold-glow);
+            box-shadow: 0 0 18px var(--lava-yellow);
         }
 
         /* View Panels */
@@ -113,11 +133,11 @@
             flex-grow: 1;
             margin-bottom: 8px;
             padding: 12px;
-            background: rgba(5, 0, 2, 0.90);
+            background: rgba(8, 0, 2, 0.92);
             border-radius: 8px;
-            backdrop-filter: blur(6px);
-            border: 1px solid var(--main-red);
-            box-shadow: 0 0 15px rgba(255, 0, 34, 0.25), inset 0 0 15px rgba(0,0,0,0.9);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--lava-red);
+            box-shadow: 0 0 20px rgba(255, 34, 0, 0.3), inset 0 0 20px rgba(0,0,0,0.95);
             display: none;
             overflow-y: auto;
             max-height: calc(100vh - 220px);
@@ -129,7 +149,7 @@
         #terminal-lines { flex-grow: 1; overflow-y: auto; }
         .line { margin-bottom: 6px; line-height: 1.4; word-break: break-word; font-size: 12px; }
         .cmd-line { color: #00f0ff; font-weight: bold; }
-        .sys-msg { color: var(--main-red); font-weight: bold; text-shadow: 0 0 5px var(--glow-red); }
+        .sys-msg { color: var(--lava-yellow); font-weight: bold; text-shadow: 0 0 6px var(--lava-red); }
         .code-matrix { color: #00ff66; font-size: 11px; font-weight: bold; }
         
         .yamraj-msg { 
@@ -138,8 +158,8 @@
             padding-left: 8px; 
             margin: 6px 0;
             font-weight: bold;
-            background: rgba(255, 215, 0, 0.08);
-            text-shadow: 0 0 5px var(--gold-glow);
+            background: rgba(255, 215, 0, 0.1);
+            text-shadow: 0 0 6px var(--lava-orange);
         }
 
         .chitragupta-msg {
@@ -153,28 +173,28 @@
 
         /* Card Elements */
         .card {
-            background: rgba(15, 0, 4, 0.95);
-            border: 1px solid var(--main-red);
+            background: rgba(20, 0, 4, 0.95);
+            border: 1px solid var(--lava-orange);
             border-radius: 6px;
             padding: 12px;
             margin-bottom: 8px;
-            box-shadow: 0 0 10px rgba(255, 0, 34, 0.2);
+            box-shadow: 0 0 12px rgba(255, 102, 0, 0.25);
         }
 
         .card-header {
             color: var(--gold);
             font-weight: bold;
-            border-bottom: 1px solid var(--dark-red);
+            border-bottom: 1px solid var(--lava-red);
             padding-bottom: 4px;
             margin-bottom: 8px;
             font-size: 13px;
-            text-shadow: 0 0 5px var(--gold-glow);
+            text-shadow: 0 0 6px var(--lava-orange);
         }
 
         .timer-display {
             background: #000;
-            border: 1px solid var(--main-red);
-            color: var(--main-red);
+            border: 2px solid var(--lava-red);
+            color: var(--lava-yellow);
             font-size: 16px;
             font-weight: bold;
             text-align: center;
@@ -182,7 +202,7 @@
             border-radius: 6px;
             letter-spacing: 1px;
             margin-top: 8px;
-            text-shadow: 0 0 10px var(--glow-red);
+            text-shadow: 0 0 12px var(--lava-red);
         }
 
         .warrant-card {
@@ -192,7 +212,7 @@
             padding: 14px;
             margin-top: 10px;
             text-align: center;
-            box-shadow: 0 0 20px rgba(255, 0, 34, 0.4);
+            box-shadow: 0 0 25px rgba(255, 34, 0, 0.5);
         }
 
         .warrant-card h3 { color: var(--gold); font-size: 14px; margin-bottom: 8px; text-transform: uppercase; }
@@ -205,14 +225,14 @@
             border-radius: 6px;
             padding: 8px 10px;
             background: rgba(0, 0, 0, 0.95);
-            box-shadow: 0 0 12px rgba(255, 215, 0, 0.25);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
             margin-top: auto;
         }
 
         .prompt { color: var(--gold); margin-right: 6px; font-weight: bold; font-size: 12px; }
         input, select { 
-            background: #0d0003; 
-            border: 1px solid var(--gold); 
+            background: #100003; 
+            border: 1px solid var(--lava-orange); 
             color: #fff; 
             font-size: 12px; 
             outline: none; 
@@ -224,7 +244,7 @@
         input[type="text"] { background: transparent; border: none; padding: 0; }
         
         .action-btn {
-            background: linear-gradient(180deg, var(--main-red), #900010);
+            background: linear-gradient(180deg, var(--lava-red), #800000);
             color: #fff;
             border: none;
             padding: 10px;
@@ -234,7 +254,7 @@
             cursor: pointer;
             margin-top: 8px;
             width: 100%;
-            box-shadow: 0 0 10px rgba(255, 0, 34, 0.5);
+            box-shadow: 0 0 12px rgba(255, 34, 0, 0.6);
         }
 
         .download-btn {
@@ -248,11 +268,11 @@
             cursor: pointer;
             margin-top: 10px;
             width: 100%;
-            box-shadow: 0 0 12px var(--gold-glow);
+            box-shadow: 0 0 15px var(--lava-yellow);
         }
 
         .sound-btn {
-            background: rgba(255, 215, 0, 0.2);
+            background: rgba(255, 215, 0, 0.25);
             border: 1px solid var(--gold);
             color: var(--gold);
             padding: 6px 10px;
@@ -265,7 +285,7 @@
         #flash-overlay {
             position: fixed;
             top:0; left:0; width:100vw; height:100vh;
-            background: var(--main-red);
+            background: var(--lava-red);
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.1s ease;
@@ -273,25 +293,30 @@
         }
 
         ::-webkit-scrollbar { width: 4px; height: 4px; }
-        ::-webkit-scrollbar-thumb { background: var(--main-red); }
+        ::-webkit-scrollbar-thumb { background: var(--lava-red); }
     </style>
 </head>
-<body onclick="enableAudioOnTouch()">
+<body onclick="startAudioOnFirstTouch()">
 
+    <div class="lava-container"></div>
+    <div class="lava-waves"></div>
     <div id="flash-overlay"></div>
 
-    <!-- Background Looping Audio Player -->
-    <audio id="mantraAudio" loop src="Mantra.mp3"></audio>
+    <!-- Audio Player with Multiple Fallback Links -->
+    <audio id="mantraAudio" loop preload="auto">
+        <source src="Mantra.mp3" type="audio/mpeg">
+        <source src="mantra.mp3" type="audio/mpeg">
+    </audio>
 
     <div class="header">
         <div class="header-top">
-            <span>❖ LORD YAMRAJ REALM ❖</span>
-            <button class="sound-btn" onclick="toggleMantra(event)">🔊 Audio Mantra</button>
+            <span>🌋 LORD YAMRAJ LAVA REALM 🌋</span>
+            <button class="sound-btn" onclick="toggleMantra(event)">🔊 Audio</button>
         </div>
         <div class="sanskrit-motto">ॐ यमाय धर्मराजाय श्री चित्रगुप्ताय नमः</div>
     </div>
 
-    <!-- Mobile Responsive Tabs -->
+    <!-- Mobile Tabs Navigation -->
     <div class="nav-tabs">
         <button class="tab-btn active" onclick="switchTab('terminal-view')">🖥️ Console</button>
         <button class="tab-btn" onclick="switchTab('warrant-view')">🪪 Warrant</button>
@@ -303,8 +328,8 @@
     <!-- PAGE 1: Console -->
     <div id="terminal-view" class="view-panel active">
         <div id="terminal-lines">
-            <div class="line sys-msg">=== YAMLOK DHARMARAJ REALM ONLINE ===</div>
-            <div class="line" style="color:var(--gold)">• Type target name below or inspect 28 Narak punishments.</div>
+            <div class="line sys-msg">=== YAMLOK BOILING LAVA REALM ONLINE ===</div>
+            <div class="line" style="color:var(--gold)">• Type target name below to register in Yamraj Death Decree.</div>
         </div>
     </div>
 
@@ -317,13 +342,13 @@
 
             <div id="warrantBox" class="warrant-card" style="display:none;">
                 <h3>☠︎ YAMLOK DEATH WARRANT ☠︎</h3>
-                <p style="font-size:10px; color:var(--gold); margin-bottom:6px;">COURT OF LORD YAMRAJ DHARMARAJ</p>
+                <p style="font-size:10px; color:var(--gold); margin-bottom:6px;">SUPREME COURT OF LORD YAMRAJ DHARMARAJ</p>
                 
                 <div style="text-align:left; font-size:11px; line-height:1.5; border-top:1px solid #400; border-bottom:1px solid #400; padding:6px 0;">
                     <p><b>TARGET:</b> <span id="wNameDisplay" style="color:#fff;">-</span></p>
                     <p><b>DECREE BY:</b> Lord Yamraj</p>
                     <p><b>AUDITOR:</b> Maharishi Chitragupta</p>
-                    <p><b>GATE:</b> <span id="wGateDisplay" style="color:var(--main-red);">Kumbhipaka Naraka</span></p>
+                    <p><b>PUNISHMENT GATE:</b> <span id="wGateDisplay" style="color:var(--lava-red);">Kumbhipaka Lava Cauldron</span></p>
                     <p><b>DATE:</b> <span id="wDateDisplay" style="color:#00f0ff;">-</span></p>
                 </div>
 
@@ -369,13 +394,13 @@
     <!-- PAGE 5: Complete 28 Narak List -->
     <div id="naraka-view" class="view-panel">
         <div class="card">
-            <div class="card-header">👹 COMPLETE 28 NARAKA PUNISHMENT DECREE</div>
+            <div class="card-header">👹 COMPLETE 28 NARAKA LIST (GARUDA PURANA)</div>
             <select id="narakaSelect" onchange="showNarakaInfo()">
                 <option value="tamisra">1. Tamisra (तामिस्र) - Dark Abyss for Thieves</option>
                 <option value="andhatamisra">2. Andhatamisra (अंधतामिस्र) - Blind Dark Torment for Deceivers</option>
-                <option value="raurava">3. Raurava (रौरव) - Serpent Pit for Selfish Sinner</option>
+                <option value="raurava">3. Raurava (रौरव) - Serpent Pit for Selfish Sinners</option>
                 <option value="maharaurava">4. Maharaurava (महारौरव) - Flame Cavern for Destroyers</option>
-                <option value="kumbhipaka">5. Kumbhipaka (कुम्भीपाक) - Boiling Oil Cauldron</option>
+                <option value="kumbhipaka">5. Kumbhipaka (कुम्भीपाक) - Boiling Lava Oil Cauldron</option>
                 <option value="kalasutra">6. Kalasutra (कालसूत्र) - Red Hot Copper Threads</option>
                 <option value="asipatravana">7. Asipatravana (असिपत्रवन) - Razor Blade Forest</option>
                 <option value="shukaramukha">8. Shukaramukha (सूकरमुख) - Crushed in Vice Press</option>
@@ -384,18 +409,15 @@
                 <option value="salmali">11. Salmali (शाल्मली) - Embracing Thorns & Fire Tree</option>
                 <option value="vajrakantaka">12. Vajrakantaka (वज्रकंटक) - Diamond Needle Piercing</option>
                 <option value="vaitarani">13. Vaitarani (वैतरणी) - Boiling Blood & Acid River</option>
-
                 <option value="visasana">14. Visasana (विशसन) - Whipped by Metal Rods</option>
                 <option value="lalabhaksa">15. Lalabhaksa (लालाभक्ष) - River of Filth</option>
                 <option value="sarameyadana">16. Sarameyadana (सारमेयादन) - Poison Hounds Attack</option>
                 <option value="avici">17. Avici (अवीचि) - Cascading Fire Ocean</option>
                 <option value="ayahpana">18. Ayahpana (अयःपान) - Forced Molten Metal Drink</option>
-
                 <option value="ksharakardama">19. Ksharakardama (क्षारकदम) - Acid Mud Pool</option>
                 <option value="raksogana">20. Raksogana-bhojana (रक्षोगणभोजन) - Cannibal Fiend Execution</option>
                 <option value="sulaprota">21. Sulaprota (शूलप्रोत) - Impaled on Flame Trident</option>
                 <option value="dandasuka">22. Dandasuka (दन्दशूक) - Five Headed Serpent Bites</option>
-
                 <option value="avatanirodhana">23. Avatanirodhana (अवटनिरोधन) - Trapped in Poison Smoke Pit</option>
                 <option value="paryavartana">24. Paryavartana (पर्यावर्तन) - Pierced by Fierce Birds</option>
                 <option value="suchimukha">25. Suchimukha (सूचीमुख) - Stitched by Hot Needles</option>
@@ -409,7 +431,7 @@
         </div>
     </div>
 
-    <!-- Global Input -->
+    <!-- Input Bar -->
     <div class="input-area">
         <span class="prompt">yamraj@yamlok:~$</span>
         <input type="text" id="commandInput" placeholder="Enter target name..." autofocus autocomplete="off">
@@ -419,13 +441,13 @@
         const input = document.getElementById('commandInput');
         const terminalLines = document.getElementById('terminal-lines');
         let countdownInterval = null;
-        let audioStarted = false;
+        let audioActive = false;
 
-        function enableAudioOnTouch() {
-            if (!audioStarted) {
+        function startAudioOnFirstTouch() {
+            if (!audioActive) {
                 const audio = document.getElementById('mantraAudio');
                 audio.play().then(() => {
-                    audioStarted = true;
+                    audioActive = true;
                 }).catch(() => {});
             }
         }
@@ -435,7 +457,7 @@
             const audio = document.getElementById('mantraAudio');
             if (audio.paused) {
                 audio.play().then(() => {
-                    audioStarted = true;
+                    audioActive = true;
                     alert("🔊 Yamlok Mantra Audio Playing!");
                 }).catch(() => {});
             } else {
@@ -445,7 +467,7 @@
 
         function triggerRedFlash() {
             const overlay = document.getElementById('flash-overlay');
-            overlay.style.opacity = '0.6';
+            overlay.style.opacity = '0.7';
             setTimeout(() => overlay.style.opacity = '0', 150);
         }
 
@@ -482,7 +504,7 @@
             document.getElementById('wNameDisplay').innerText = name.toUpperCase();
             document.getElementById('wDateDisplay').innerText = new Date().toLocaleDateString();
             
-            const gates = ["Kumbhipaka Naraka", "Raurava Cavern", "Maharaurava Flame Gate", "Vaitarani River Crossing", "Kalasutra Copper Thread Pit"];
+            const gates = ["Kumbhipaka Lava Cauldron", "Raurava Cavern", "Maharaurava Flame Gate", "Vaitarani Boiling River", "Kalasutra Red Hot Copper Pit"];
             document.getElementById('wGateDisplay').innerText = gates[Math.floor(Math.random() * gates.length)];
 
             document.getElementById('warrantBox').style.display = 'block';
@@ -544,7 +566,7 @@
             const sinPercent = Math.floor(Math.random() * 40) + 60;
             res.innerHTML = `
                 <div style="font-size:11px;"><b>Target:</b> ${name}</div>
-                <div style="font-size:11px; color:var(--main-red);">Paap (Sins): ${sinPercent}%</div>
+                <div style="font-size:11px; color:var(--lava-red);">Paap (Sins): ${sinPercent}%</div>
                 <div style="font-size:11px; color:#00ff66;">Punya (Virtues): ${100 - sinPercent}%</div>
             `;
         }
@@ -557,7 +579,7 @@
                 andhatamisra: "Andhatamisra: Deceivers who betray trust are blinded & tormented in darkness.",
                 raurava: "Raurava: Ruru serpents torment those who lived purely for selfish gains.",
                 maharaurava: "Maharaurava: Massive flames devour sinners who destroyed lives & property.",
-                kumbhipaka: "Kumbhipaka: Boiled in giant cauldrons of searing hot oil for harming innocent life.",
+                kumbhipaka: "Kumbhipaka: Boiled in giant cauldrons of searing hot lava oil for harming innocent life.",
                 kalasutra: "Kalasutra: Sliced on red hot copper threads for disrespecting elders & teachers.",
                 asipatravana: "Asipatravana: Hacked by razor-sharp sword leaves in a burning forest.",
                 shukaramukha: "Shukaramukha: Crushed under vice presses for abusing power over the weak.",
