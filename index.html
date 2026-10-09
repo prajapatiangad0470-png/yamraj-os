@@ -8,12 +8,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
         :root {
-            --main-red: #ff003c;
-            --dark-red: #3a0008;
-            --glow-red: #ff2a2a;
+            --main-red: #ff0022;
+            --dark-red: #2a0005;
+            --glow-red: #ff1100;
             --gold: #ffd700;
             --gold-glow: #ffaa00;
-            --bg-overlay: rgba(5, 0, 2, 0.65);
+            --bg-overlay: rgba(8, 0, 2, 0.75);
             --font: 'Courier New', Courier, monospace;
         }
 
@@ -39,21 +39,21 @@
             overflow-x: hidden;
         }
 
-        /* Header */
+        /* Fiery Header */
         .header {
-            border: 1px solid var(--gold);
+            border: 2px solid var(--gold);
             display: flex;
             flex-direction: column;
             gap: 6px;
             align-items: center;
             color: var(--gold);
             font-weight: bold;
-            text-shadow: 0 0 8px var(--gold-glow);
-            background: rgba(10, 0, 3, 0.92);
-            padding: 8px 10px;
-            border-radius: 6px;
-            font-size: 12px;
-            box-shadow: 0 0 12px rgba(255, 215, 0, 0.25);
+            text-shadow: 0 0 10px var(--gold-glow);
+            background: rgba(15, 0, 3, 0.95);
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 13px;
+            box-shadow: 0 0 18px rgba(255, 0, 34, 0.5), inset 0 0 10px rgba(255, 215, 0, 0.3);
             text-align: center;
         }
 
@@ -64,7 +64,14 @@
             align-items: center;
         }
 
-        /* Mobile Friendly Grid Navigation */
+        .sanskrit-motto {
+            font-size: 11px;
+            color: var(--main-red);
+            letter-spacing: 1px;
+            text-shadow: 0 0 5px var(--glow-red);
+        }
+
+        /* Mobile Responsive Grid Navigation */
         .nav-tabs {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -80,17 +87,17 @@
         }
 
         .tab-btn {
-            background: linear-gradient(180deg, rgba(30, 0, 8, 0.95), rgba(10, 0, 3, 0.95));
+            background: linear-gradient(180deg, rgba(40, 0, 8, 0.95), rgba(10, 0, 3, 0.98));
             border: 1px solid var(--main-red);
             color: #ffe0e0;
             padding: 10px 6px;
             font-size: 11px;
             cursor: pointer;
-            border-radius: 5px;
+            border-radius: 6px;
             font-weight: bold;
             text-align: center;
             text-transform: uppercase;
-            box-shadow: 0 0 6px rgba(255, 0, 60, 0.3);
+            box-shadow: 0 0 8px rgba(255, 0, 34, 0.4);
             transition: all 0.2s ease;
         }
 
@@ -98,18 +105,19 @@
             background: var(--gold);
             color: #000;
             border-color: var(--gold);
-            box-shadow: 0 0 12px var(--gold-glow);
+            box-shadow: 0 0 15px var(--gold-glow);
         }
 
         /* View Panels */
         .view-panel {
             flex-grow: 1;
             margin-bottom: 8px;
-            padding: 10px;
-            background: rgba(0, 0, 0, 0.85);
-            border-radius: 6px;
-            backdrop-filter: blur(4px);
-            border: 1px solid rgba(255, 215, 0, 0.3);
+            padding: 12px;
+            background: rgba(5, 0, 2, 0.90);
+            border-radius: 8px;
+            backdrop-filter: blur(6px);
+            border: 1px solid var(--main-red);
+            box-shadow: 0 0 15px rgba(255, 0, 34, 0.25), inset 0 0 15px rgba(0,0,0,0.9);
             display: none;
             overflow-y: auto;
             max-height: calc(100vh - 220px);
@@ -121,7 +129,7 @@
         #terminal-lines { flex-grow: 1; overflow-y: auto; }
         .line { margin-bottom: 6px; line-height: 1.4; word-break: break-word; font-size: 12px; }
         .cmd-line { color: #00f0ff; font-weight: bold; }
-        .sys-msg { color: var(--main-red); font-weight: bold; }
+        .sys-msg { color: var(--main-red); font-weight: bold; text-shadow: 0 0 5px var(--glow-red); }
         .code-matrix { color: #00ff66; font-size: 11px; font-weight: bold; }
         
         .yamraj-msg { 
@@ -145,11 +153,12 @@
 
         /* Card Elements */
         .card {
-            background: rgba(20, 0, 5, 0.90);
+            background: rgba(15, 0, 4, 0.95);
             border: 1px solid var(--main-red);
             border-radius: 6px;
-            padding: 10px;
+            padding: 12px;
             margin-bottom: 8px;
+            box-shadow: 0 0 10px rgba(255, 0, 34, 0.2);
         }
 
         .card-header {
@@ -158,7 +167,8 @@
             border-bottom: 1px solid var(--dark-red);
             padding-bottom: 4px;
             margin-bottom: 8px;
-            font-size: 12px;
+            font-size: 13px;
+            text-shadow: 0 0 5px var(--gold-glow);
         }
 
         .timer-display {
@@ -176,12 +186,13 @@
         }
 
         .warrant-card {
-            background: #0d0003;
+            background: #080002;
             border: 3px double var(--gold);
             border-radius: 8px;
-            padding: 12px;
+            padding: 14px;
             margin-top: 10px;
             text-align: center;
+            box-shadow: 0 0 20px rgba(255, 0, 34, 0.4);
         }
 
         .warrant-card h3 { color: var(--gold); font-size: 14px; margin-bottom: 8px; text-transform: uppercase; }
@@ -194,16 +205,16 @@
             border-radius: 6px;
             padding: 8px 10px;
             background: rgba(0, 0, 0, 0.95);
-            box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+            box-shadow: 0 0 12px rgba(255, 215, 0, 0.25);
             margin-top: auto;
         }
 
         .prompt { color: var(--gold); margin-right: 6px; font-weight: bold; font-size: 12px; }
         input, select { 
-            background: #100003; 
+            background: #0d0003; 
             border: 1px solid var(--gold); 
             color: #fff; 
-            font-size: 13px; 
+            font-size: 12px; 
             outline: none; 
             border-radius: 4px; 
             padding: 8px;
@@ -213,7 +224,7 @@
         input[type="text"] { background: transparent; border: none; padding: 0; }
         
         .action-btn {
-            background: var(--main-red);
+            background: linear-gradient(180deg, var(--main-red), #900010);
             color: #fff;
             border: none;
             padding: 10px;
@@ -223,6 +234,7 @@
             cursor: pointer;
             margin-top: 8px;
             width: 100%;
+            box-shadow: 0 0 10px rgba(255, 0, 34, 0.5);
         }
 
         .download-btn {
@@ -236,7 +248,7 @@
             cursor: pointer;
             margin-top: 10px;
             width: 100%;
-            box-shadow: 0 0 10px var(--gold-glow);
+            box-shadow: 0 0 12px var(--gold-glow);
         }
 
         .sound-btn {
@@ -260,30 +272,23 @@
             z-index: 999;
         }
 
-        audio {
-            width: 100%;
-            margin-top: 6px;
-            height: 32px;
-        }
-
-        ::-webkit-scrollbar { width: 3px; height: 3px; }
-        ::-webkit-scrollbar-thumb { background: var(--gold); }
+        ::-webkit-scrollbar { width: 4px; height: 4px; }
+        ::-webkit-scrollbar-thumb { background: var(--main-red); }
     </style>
 </head>
-<body>
+<body onclick="enableAudioOnTouch()">
 
     <div id="flash-overlay"></div>
+
+    <!-- Background Looping Audio Player -->
+    <audio id="mantraAudio" loop src="Mantra.mp3"></audio>
 
     <div class="header">
         <div class="header-top">
             <span>❖ LORD YAMRAJ REALM ❖</span>
-            <button class="sound-btn" onclick="toggleMantra()">🔊 Play Audio</button>
+            <button class="sound-btn" onclick="toggleMantra(event)">🔊 Audio Mantra</button>
         </div>
-        <!-- Capital M File Source Integrated -->
-        <audio id="mantraAudio" controls loop style="display:none;">
-            <source src="Mantra.mp3" type="audio/mpeg">
-            <source src="mantra.mp3" type="audio/mpeg">
-        </audio>
+        <div class="sanskrit-motto">ॐ यमाय धर्मराजाय श्री चित्रगुप्ताय नमः</div>
     </div>
 
     <!-- Mobile Responsive Tabs -->
@@ -292,14 +297,14 @@
         <button class="tab-btn" onclick="switchTab('warrant-view')">🪪 Warrant</button>
         <button class="tab-btn" onclick="switchTab('timer-view')">⏳ Life Clock</button>
         <button class="tab-btn" onclick="switchTab('chitragupta-view')">📜 Karma</button>
-        <button class="tab-btn" onclick="switchTab('naraka-view')">👹 Narak</button>
+        <button class="tab-btn" onclick="switchTab('naraka-view')">👹 28 Narak</button>
     </div>
 
     <!-- PAGE 1: Console -->
     <div id="terminal-view" class="view-panel active">
         <div id="terminal-lines">
-            <div class="line sys-msg">=== YAMLOK DIGITAL COURT ONLINE ===</div>
-            <div class="line" style="color:var(--gold)">• Type target name below or click tabs above.</div>
+            <div class="line sys-msg">=== YAMLOK DHARMARAJ REALM ONLINE ===</div>
+            <div class="line" style="color:var(--gold)">• Type target name below or inspect 28 Narak punishments.</div>
         </div>
     </div>
 
@@ -361,19 +366,45 @@
         </div>
     </div>
 
-    <!-- PAGE 5: Narak List -->
+    <!-- PAGE 5: Complete 28 Narak List -->
     <div id="naraka-view" class="view-panel">
         <div class="card">
-            <div class="card-header">👹 28 NARAKA PUNISHMENT SELECTOR</div>
+            <div class="card-header">👹 COMPLETE 28 NARAKA PUNISHMENT DECREE</div>
             <select id="narakaSelect" onchange="showNarakaInfo()">
-                <option value="kumbhipaka">1. Kumbhipaka - Boiling Oil</option>
-                <option value="raurava">2. Raurava - Serpent Torment</option>
-                <option value="maharaurava">3. Maharaurava - Flame Cavern</option>
-                <option value="vaitarani">4. Vaitarani - Blood & Acid River</option>
-                <option value="tamisra">5. Tamisra - Dark Abyss</option>
+                <option value="tamisra">1. Tamisra (तामिस्र) - Dark Abyss for Thieves</option>
+                <option value="andhatamisra">2. Andhatamisra (अंधतामिस्र) - Blind Dark Torment for Deceivers</option>
+                <option value="raurava">3. Raurava (रौरव) - Serpent Pit for Selfish Sinner</option>
+                <option value="maharaurava">4. Maharaurava (महारौरव) - Flame Cavern for Destroyers</option>
+                <option value="kumbhipaka">5. Kumbhipaka (कुम्भीपाक) - Boiling Oil Cauldron</option>
+                <option value="kalasutra">6. Kalasutra (कालसूत्र) - Red Hot Copper Threads</option>
+                <option value="asipatravana">7. Asipatravana (असिपत्रवन) - Razor Blade Forest</option>
+                <option value="shukaramukha">8. Shukaramukha (सूकरमुख) - Crushed in Vice Press</option>
+                <option value="andhakupa">9. Andhakupa (अंधकूप) - Attack of Hidden Beasts</option>
+                <option value="kriminishana">10. Kriminishana (कृमिभोजन) - Devoured by Flesh Worms</option>
+                <option value="salmali">11. Salmali (शाल्मली) - Embracing Thorns & Fire Tree</option>
+                <option value="vajrakantaka">12. Vajrakantaka (वज्रकंटक) - Diamond Needle Piercing</option>
+                <option value="vaitarani">13. Vaitarani (वैतरणी) - Boiling Blood & Acid River</option>
+
+                <option value="visasana">14. Visasana (विशसन) - Whipped by Metal Rods</option>
+                <option value="lalabhaksa">15. Lalabhaksa (लालाभक्ष) - River of Filth</option>
+                <option value="sarameyadana">16. Sarameyadana (सारमेयादन) - Poison Hounds Attack</option>
+                <option value="avici">17. Avici (अवीचि) - Cascading Fire Ocean</option>
+                <option value="ayahpana">18. Ayahpana (अयःपान) - Forced Molten Metal Drink</option>
+
+                <option value="ksharakardama">19. Ksharakardama (क्षारकदम) - Acid Mud Pool</option>
+                <option value="raksogana">20. Raksogana-bhojana (रक्षोगणभोजन) - Cannibal Fiend Execution</option>
+                <option value="sulaprota">21. Sulaprota (शूलप्रोत) - Impaled on Flame Trident</option>
+                <option value="dandasuka">22. Dandasuka (दन्दशूक) - Five Headed Serpent Bites</option>
+
+                <option value="avatanirodhana">23. Avatanirodhana (अवटनिरोधन) - Trapped in Poison Smoke Pit</option>
+                <option value="paryavartana">24. Paryavartana (पर्यावर्तन) - Pierced by Fierce Birds</option>
+                <option value="suchimukha">25. Suchimukha (सूचीमुख) - Stitched by Hot Needles</option>
+                <option value="tapana">26. Tapana (तपन) - Baked on Hot Iron Ground</option>
+                <option value="sampratapana">27. Sampratapana (संप्रतपन) - Scorched by Solar Flames</option>
+                <option value="mahatapana">28. Mahatapana (महातपन) - Immutable Cosmic Inferno</option>
             </select>
-            <div id="narakaDetails" style="margin-top:8px; font-size:11px; color:#ffcccc;" class="chitragupta-msg">
-                Select a Naraka to view punishment decree.
+            <div id="narakaDetails" style="margin-top:10px; font-size:11px; color:#ffcccc;" class="chitragupta-msg">
+                Select any Naraka from the list above to view Chitragupta's punishment.
             </div>
         </div>
     </div>
@@ -381,25 +412,32 @@
     <!-- Global Input -->
     <div class="input-area">
         <span class="prompt">yamraj@yamlok:~$</span>
-        <input type="text" id="commandInput" placeholder="Enter name here..." autofocus autocomplete="off">
+        <input type="text" id="commandInput" placeholder="Enter target name..." autofocus autocomplete="off">
     </div>
 
     <script>
         const input = document.getElementById('commandInput');
         const terminalLines = document.getElementById('terminal-lines');
         let countdownInterval = null;
+        let audioStarted = false;
 
-        function toggleMantra() {
-            const audio = document.getElementById('mantraAudio');
-            if (audio.style.display === 'none') {
-                audio.style.display = 'block';
+        function enableAudioOnTouch() {
+            if (!audioStarted) {
+                const audio = document.getElementById('mantraAudio');
+                audio.play().then(() => {
+                    audioStarted = true;
+                }).catch(() => {});
             }
+        }
+
+        function toggleMantra(e) {
+            if (e) e.stopPropagation();
+            const audio = document.getElementById('mantraAudio');
             if (audio.paused) {
                 audio.play().then(() => {
-                    alert("🔊 Mantra Audio Playing!");
-                }).catch(() => {
-                    alert("Audio Player Controls Opened Below Header. Click Play!");
-                });
+                    audioStarted = true;
+                    alert("🔊 Yamlok Mantra Audio Playing!");
+                }).catch(() => {});
             } else {
                 audio.pause();
             }
@@ -444,7 +482,7 @@
             document.getElementById('wNameDisplay').innerText = name.toUpperCase();
             document.getElementById('wDateDisplay').innerText = new Date().toLocaleDateString();
             
-            const gates = ["Kumbhipaka Naraka", "Raurava Cavern", "Maharaurava Flame Gate", "Vaitarani River Crossing"];
+            const gates = ["Kumbhipaka Naraka", "Raurava Cavern", "Maharaurava Flame Gate", "Vaitarani River Crossing", "Kalasutra Copper Thread Pit"];
             document.getElementById('wGateDisplay').innerText = gates[Math.floor(Math.random() * gates.length)];
 
             document.getElementById('warrantBox').style.display = 'block';
@@ -455,7 +493,7 @@
         function downloadWarrantCard() {
             const cardElement = document.getElementById('warrantBox');
             html2canvas(cardElement, {
-                backgroundColor: "#0d0003",
+                backgroundColor: "#080002",
                 scale: 2
             }).then(canvas => {
                 const image = canvas.toDataURL("image/png");
@@ -515,11 +553,34 @@
             const val = document.getElementById('narakaSelect').value;
             const details = document.getElementById('narakaDetails');
             const info = {
-                kumbhipaka: "Boiling oil cauldrons for those who harmed innocent lives.",
-                raurava: "Serpent pit for deceptive and betraying souls.",
-                maharaurava: "Cavern of unyielding fire for severe cosmic sin transgressors.",
-                vaitarani: "Boiling blood and acid river crossed only by righteous deeds.",
-                tamisra: "Total pitch black darkness for robbers and thieves."
+                tamisra: "Tamisra: Thieves & robbers bound in heavy chains in pitch dark abysses.",
+                andhatamisra: "Andhatamisra: Deceivers who betray trust are blinded & tormented in darkness.",
+                raurava: "Raurava: Ruru serpents torment those who lived purely for selfish gains.",
+                maharaurava: "Maharaurava: Massive flames devour sinners who destroyed lives & property.",
+                kumbhipaka: "Kumbhipaka: Boiled in giant cauldrons of searing hot oil for harming innocent life.",
+                kalasutra: "Kalasutra: Sliced on red hot copper threads for disrespecting elders & teachers.",
+                asipatravana: "Asipatravana: Hacked by razor-sharp sword leaves in a burning forest.",
+                shukaramukha: "Shukaramukha: Crushed under vice presses for abusing power over the weak.",
+                andhakupa: "Andhakupa: Attacked by venomous creatures for oppressing good souls.",
+                kriminishana: "Kriminishana: Devoured alive by flesh-eating worms for deceit.",
+                salmali: "Salmali: Forced to embrace burning thorn trees for unholy desires.",
+                vajrakantaka: "Vajrakantaka: Pierced by diamond sharp burning needles.",
+                vaitarani: "Vaitarani: Swept in boiling blood, bone & acid river crossed only by virtue.",
+                visasana: "Visasana: Whipped ceaselessly by iron spikes for cruelty.",
+                lalabhaksa: "Lalabhaksa: Cast in oceans of filth for abusing hospitality.",
+                sarameyadana: "Sarameyadana: Hunted by 720 fiery hounds for arson.",
+                avici: "Avici: Thrown from high cliffs into endless fire oceans.",
+                ayahpana: "Ayahpana: Forced to drink molten metal for breaking sacred oaths.",
+                ksharakardama: "Ksharakardama: Drowned face down in corrosive acid mud.",
+                raksogana: "Raksogana: Torn apart by cannibal fiends for unholy sacrifices.",
+                sulaprota: "Sulaprota: Impaled on red hot tridents by Yamdoots.",
+                dandasuka: "Dandasuka: Bitten endlessly by five-headed giant vipers.",
+                avatanirodhana: "Avatanirodhana: Trapped in suffocating poison smoke caverns.",
+                paryavartana: "Paryavartana: Eyes pecked out by fierce fiery vultures.",
+                suchimukha: "Suchimukha: Stitched limb to limb with burning hot needles.",
+                tapana: "Tapana: Baked on glowing hot iron desert plains.",
+                sampratapana: "Sampratapana: Scorched under 12 intense cosmic suns.",
+                mahatapana: "Mahatapana: Immutable cosmic inferno for ultimate transgressors."
             };
             details.innerText = `Chitragupta Decree: ${info[val]}`;
         }
