@@ -13,7 +13,7 @@
             --glow-red: #ff2a2a;
             --gold: #ffd700;
             --gold-glow: #ffaa00;
-            --bg-overlay: rgba(5, 0, 2, 0.60);
+            --bg-overlay: rgba(5, 0, 2, 0.65);
             --font: 'Courier New', Courier, monospace;
         }
 
@@ -32,51 +32,63 @@
             background-position: center;
             background-attachment: fixed;
             color: #fff;
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            padding: 10px;
-            overflow: hidden;
+            padding: 8px;
+            overflow-x: hidden;
         }
 
-        /* Top Header */
+        /* Header */
         .header {
             border: 1px solid var(--gold);
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
+            gap: 6px;
             align-items: center;
             color: var(--gold);
             font-weight: bold;
             text-shadow: 0 0 8px var(--gold-glow);
-            background: rgba(10, 0, 3, 0.90);
-            padding: 8px 12px;
+            background: rgba(10, 0, 3, 0.92);
+            padding: 8px 10px;
             border-radius: 6px;
             font-size: 12px;
             box-shadow: 0 0 12px rgba(255, 215, 0, 0.25);
+            text-align: center;
         }
 
-        .header .sub-title { color: var(--main-red); font-size: 11px; }
-
-        /* Multi-Page Tabs Navigation */
-        .nav-tabs {
+        .header-top {
             display: flex;
-            gap: 4px;
-            margin-top: 6px;
-            overflow-x: auto;
-            padding-bottom: 4px;
+            justify-content: space-between;
+            width: 100%;
+            align-items: center;
+        }
+
+        /* Mobile Friendly Grid Navigation */
+        .nav-tabs {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 6px;
+            margin: 8px 0;
+            width: 100%;
+        }
+
+        @media (min-width: 600px) {
+            .nav-tabs {
+                grid-template-columns: repeat(5, 1fr);
+            }
         }
 
         .tab-btn {
-            background: linear-gradient(180deg, rgba(30, 0, 8, 0.9), rgba(10, 0, 3, 0.95));
+            background: linear-gradient(180deg, rgba(30, 0, 8, 0.95), rgba(10, 0, 3, 0.95));
             border: 1px solid var(--main-red);
             color: #ffe0e0;
-            padding: 7px 10px;
-            font-size: 10px;
+            padding: 10px 6px;
+            font-size: 11px;
             cursor: pointer;
             border-radius: 5px;
             font-weight: bold;
-            white-space: nowrap;
+            text-align: center;
             text-transform: uppercase;
             box-shadow: 0 0 6px rgba(255, 0, 60, 0.3);
             transition: all 0.2s ease;
@@ -89,24 +101,25 @@
             box-shadow: 0 0 12px var(--gold-glow);
         }
 
-        /* Main View Panel */
+        /* View Panels */
         .view-panel {
             flex-grow: 1;
-            margin: 6px 0;
+            margin-bottom: 8px;
             padding: 10px;
-            background: rgba(0, 0, 0, 0.80);
+            background: rgba(0, 0, 0, 0.85);
             border-radius: 6px;
             backdrop-filter: blur(4px);
             border: 1px solid rgba(255, 215, 0, 0.3);
-            overflow-y: auto;
             display: none;
+            overflow-y: auto;
+            max-height: calc(100vh - 220px);
         }
 
         .view-panel.active { display: flex; flex-direction: column; }
 
         /* Terminal Lines */
         #terminal-lines { flex-grow: 1; overflow-y: auto; }
-        .line { margin-bottom: 5px; line-height: 1.4; word-break: break-word; font-size: 12px; }
+        .line { margin-bottom: 6px; line-height: 1.4; word-break: break-word; font-size: 12px; }
         .cmd-line { color: #00f0ff; font-weight: bold; }
         .sys-msg { color: var(--main-red); font-weight: bold; }
         .code-matrix { color: #00ff66; font-size: 11px; font-weight: bold; }
@@ -130,7 +143,7 @@
             background: rgba(0, 240, 255, 0.08);
         }
 
-        /* UI Cards */
+        /* Card Elements */
         .card {
             background: rgba(20, 0, 5, 0.90);
             border: 1px solid var(--main-red);
@@ -145,38 +158,35 @@
             border-bottom: 1px solid var(--dark-red);
             padding-bottom: 4px;
             margin-bottom: 8px;
-            font-size: 13px;
+            font-size: 12px;
         }
 
-        /* Countdown Timer Box */
         .timer-display {
             background: #000;
             border: 1px solid var(--main-red);
             color: var(--main-red);
-            font-size: 18px;
+            font-size: 16px;
             font-weight: bold;
             text-align: center;
             padding: 10px;
             border-radius: 6px;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
             margin-top: 8px;
             text-shadow: 0 0 10px var(--glow-red);
         }
 
-        /* Downloadable Warrant Card */
         .warrant-card {
             background: #0d0003;
             border: 3px double var(--gold);
             border-radius: 8px;
-            padding: 15px;
+            padding: 12px;
             margin-top: 10px;
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
             text-align: center;
         }
 
-        .warrant-card h3 { color: var(--gold); font-size: 15px; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
+        .warrant-card h3 { color: var(--gold); font-size: 14px; margin-bottom: 8px; text-transform: uppercase; }
 
-        /* Input Area */
+        /* Mobile Inputs & Buttons */
         .input-area {
             display: flex;
             align-items: center;
@@ -185,43 +195,56 @@
             padding: 8px 10px;
             background: rgba(0, 0, 0, 0.95);
             box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+            margin-top: auto;
         }
 
         .prompt { color: var(--gold); margin-right: 6px; font-weight: bold; font-size: 12px; }
-        input, select { background: transparent; border: 1px solid var(--dark-red); color: #fff; font-size: 13px; outline: none; border-radius: 4px; padding: 4px 6px; }
-        input[type="text"] { flex-grow: 1; border: none; }
+        input, select { 
+            background: #100003; 
+            border: 1px solid var(--gold); 
+            color: #fff; 
+            font-size: 13px; 
+            outline: none; 
+            border-radius: 4px; 
+            padding: 8px;
+            width: 100%;
+        }
+
+        input[type="text"] { background: transparent; border: none; padding: 0; }
         
         .action-btn {
             background: var(--main-red);
             color: #fff;
             border: none;
-            padding: 7px 12px;
-            font-size: 11px;
+            padding: 10px;
+            font-size: 12px;
             border-radius: 4px;
             font-weight: bold;
             cursor: pointer;
-            margin-top: 6px;
+            margin-top: 8px;
+            width: 100%;
         }
 
         .download-btn {
             background: var(--gold);
             color: #000;
             border: none;
-            padding: 8px 14px;
-            font-size: 11px;
+            padding: 10px;
+            font-size: 12px;
             border-radius: 4px;
             font-weight: bold;
             cursor: pointer;
             margin-top: 10px;
+            width: 100%;
             box-shadow: 0 0 10px var(--gold-glow);
         }
 
         .sound-btn {
-            background: rgba(255, 215, 0, 0.15);
+            background: rgba(255, 215, 0, 0.2);
             border: 1px solid var(--gold);
             color: var(--gold);
-            padding: 4px 8px;
-            font-size: 10px;
+            padding: 6px 10px;
+            font-size: 11px;
             border-radius: 4px;
             cursor: pointer;
             font-weight: bold;
@@ -237,6 +260,12 @@
             z-index: 999;
         }
 
+        audio {
+            width: 100%;
+            margin-top: 6px;
+            height: 32px;
+        }
+
         ::-webkit-scrollbar { width: 3px; height: 3px; }
         ::-webkit-scrollbar-thumb { background: var(--gold); }
     </style>
@@ -245,70 +274,73 @@
 
     <div id="flash-overlay"></div>
 
-    <!-- Background Mantra Audio Player -->
-    <audio id="chantAudio" loop src="mantra.mp3"></audio>
-
     <div class="header">
-        <span>❖ LORD YAMRAJ DHARMARAJ ❖</span>
-        <button class="sound-btn" onclick="toggleChantSound()">🔊 Chant Mantra</button>
+        <div class="header-top">
+            <span>❖ LORD YAMRAJ REALM ❖</span>
+            <button class="sound-btn" onclick="toggleMantra()">🔊 Play Audio</button>
+        </div>
+        <!-- Capital M File Source Integrated -->
+        <audio id="mantraAudio" controls loop style="display:none;">
+            <source src="Mantra.mp3" type="audio/mpeg">
+            <source src="mantra.mp3" type="audio/mpeg">
+        </audio>
     </div>
 
-    <!-- Multi-Page Tabs Navigation -->
+    <!-- Mobile Responsive Tabs -->
     <div class="nav-tabs">
-        <button class="tab-btn active" onclick="switchTab('terminal-view')">🖥️ Main Console</button>
-        <button class="tab-btn" onclick="switchTab('warrant-view')">🪪 Death Warrant</button>
-        <button class="tab-btn" onclick="switchTab('timer-view')">⏳ Remaining Life Clock</button>
-        <button class="tab-btn" onclick="switchTab('chitragupta-view')">📜 Chitragupta Ledger</button>
-        <button class="tab-btn" onclick="switchTab('naraka-view')">👹 28 Naraka List</button>
+        <button class="tab-btn active" onclick="switchTab('terminal-view')">🖥️ Console</button>
+        <button class="tab-btn" onclick="switchTab('warrant-view')">🪪 Warrant</button>
+        <button class="tab-btn" onclick="switchTab('timer-view')">⏳ Life Clock</button>
+        <button class="tab-btn" onclick="switchTab('chitragupta-view')">📜 Karma</button>
+        <button class="tab-btn" onclick="switchTab('naraka-view')">👹 Narak</button>
     </div>
 
-    <!-- PAGE 1: Terminal Console -->
+    <!-- PAGE 1: Console -->
     <div id="terminal-view" class="view-panel active">
         <div id="terminal-lines">
-            <div class="line sys-msg">=== DHARMARAJ YAMLOK ULTIMATE REALM ONLINE ===</div>
-            <div class="line" style="color:var(--gold)">• Type target name below or click Death Warrant tab.</div>
+            <div class="line sys-msg">=== YAMLOK DIGITAL COURT ONLINE ===</div>
+            <div class="line" style="color:var(--gold)">• Type target name below or click tabs above.</div>
         </div>
     </div>
 
-    <!-- PAGE 2: Death Warrant Generator -->
+    <!-- PAGE 2: Warrant -->
     <div id="warrant-view" class="view-panel">
         <div class="card">
-            <div class="card-header">🪪 GENERATE & DOWNLOAD DEATH WARRANT</div>
-            <input type="text" id="warrantName" placeholder="Enter target sinner name..." style="width:100%; border:1px solid var(--gold); margin-bottom:6px;">
+            <div class="card-header">🪪 GENERATE DEATH WARRANT</div>
+            <input type="text" id="warrantName" placeholder="Enter target sinner name..." style="border:1px solid var(--gold);">
             <button class="action-btn" onclick="generateDeathWarrant()">Generate Warrant</button>
 
-            <!-- Printable Card Area -->
             <div id="warrantBox" class="warrant-card" style="display:none;">
-                <h3>☠︎ OFFICIAL YAMLOK DEATH WARRANT ☠︎</h3>
-                <p style="font-size:11px; color:var(--gold); margin-bottom:8px;">SUPREME COURT OF LORD YAMRAJ DHARMARAJ</p>
+                <h3>☠︎ YAMLOK DEATH WARRANT ☠︎</h3>
+                <p style="font-size:10px; color:var(--gold); margin-bottom:6px;">COURT OF LORD YAMRAJ DHARMARAJ</p>
                 
-                <div style="text-align:left; font-size:12px; line-height:1.6; border-top:1px solid #400; border-bottom:1px solid #400; padding:8px 0;">
-                    <p><b>TARGET NAME:</b> <span id="wNameDisplay" style="color:#fff;">-</span></p>
-                    <p><b>DECREE ISSUED BY:</b> Dharmaraj Lord Yamraj</p>
-                    <p><b>AUDITED BY:</b> Maharishi Chitragupta</p>
-                    <p><b>PUNISHMENT GATE:</b> <span id="wGateDisplay" style="color:var(--main-red);">Kumbhipaka Naraka</span></p>
-                    <p><b>DATE OF ISSUE:</b> <span id="wDateDisplay" style="color:#00f0ff;">-</span></p>
+                <div style="text-align:left; font-size:11px; line-height:1.5; border-top:1px solid #400; border-bottom:1px solid #400; padding:6px 0;">
+                    <p><b>TARGET:</b> <span id="wNameDisplay" style="color:#fff;">-</span></p>
+                    <p><b>DECREE BY:</b> Lord Yamraj</p>
+                    <p><b>AUDITOR:</b> Maharishi Chitragupta</p>
+                    <p><b>GATE:</b> <span id="wGateDisplay" style="color:var(--main-red);">Kumbhipaka Naraka</span></p>
+                    <p><b>DATE:</b> <span id="wDateDisplay" style="color:#00f0ff;">-</span></p>
                 </div>
 
-                <p style="font-size:11px; color:var(--gold); margin-top:10px;">[OFFICIALLY SEALED WITH DHARMARAJ KALADANDA ☸︎]</p>
+                <p style="font-size:10px; color:var(--gold); margin-top:6px;">[SEALED WITH DHARMARAJ KALADANDA ☸︎]</p>
             </div>
 
-            <button id="downloadWarrantBtn" class="download-btn" style="display:none;" onclick="downloadWarrantCard()">📥 Download Warrant Image (.PNG)</button>
+            <button id="downloadWarrantBtn" class="download-btn" style="display:none;" onclick="downloadWarrantCard()">📥 Download Warrant Image</button>
         </div>
     </div>
 
-    <!-- PAGE 3: Remaining Life Clock -->
+    <!-- PAGE 3: Life Clock -->
     <div id="timer-view" class="view-panel">
         <div class="card">
-            <div class="card-header">⏳ CHITRAGUPTA LIFE EXPECTANCY CALCULATOR</div>
-            <label style="font-size:11px;">Target Name:</label>
-            <input type="text" id="lifeName" placeholder="e.g. Rahul Sharma" style="width:100%; margin-bottom:6px; border: 1px solid var(--gold);">
+            <div class="card-header">⏳ LIFE EXPECTANCY CALCULATOR</div>
+            <p style="font-size:10px; margin-bottom:4px;">Target Name:</p>
+            <input type="text" id="lifeName" placeholder="e.g. Rahul Sharma" style="margin-bottom:6px;">
             
-            <label style="font-size:11px;">Current Age:</label>
-            <input type="number" id="lifeAge" value="22" style="width:100%; margin-bottom:6px; border: 1px solid var(--gold);">
+            <p style="font-size:10px; margin-bottom:4px;">Current Age:</p>
+            <input type="number" id="lifeAge" value="22" style="margin-bottom:6px;">
 
-            <label style="font-size:11px;">Sin/Paap Score (1 to 100):</label>
-            <input type="number" id="lifeSin" value="75" style="width:100%; margin-bottom:8px; border: 1px solid var(--gold);">
+            <p style="font-size:10px; margin-bottom:4px;">Sin/Paap Score (1 to 100):</p>
+            <input type="number" id="lifeSin" value="75" style="margin-bottom:8px;">
 
             <button class="action-btn" onclick="calculateRemainingLife()">Calculate Remaining Time</button>
 
@@ -319,37 +351,37 @@
         </div>
     </div>
 
-    <!-- PAGE 4: Chitragupta Ledger -->
+    <!-- PAGE 4: Karma -->
     <div id="chitragupta-view" class="view-panel">
         <div class="card">
             <div class="card-header">📜 CHITRAGUPTA AGRASANDHANI</div>
-            <input type="text" id="karmaTarget" placeholder="Enter target name..." style="width: 100%; border: 1px solid var(--gold); margin-bottom:6px;">
+            <input type="text" id="karmaTarget" placeholder="Enter target name..." style="margin-bottom:6px;">
             <button class="action-btn" onclick="calculateKarma()">Scan Karmic Balance</button>
-            <div id="karmaResult" style="margin-top:10px;"></div>
+            <div id="karmaResult" style="margin-top:8px;"></div>
         </div>
     </div>
 
-    <!-- PAGE 5: 28 Naraka List -->
+    <!-- PAGE 5: Narak List -->
     <div id="naraka-view" class="view-panel">
         <div class="card">
             <div class="card-header">👹 28 NARAKA PUNISHMENT SELECTOR</div>
-            <select id="narakaSelect" style="width:100%; background:#100003; color:var(--gold);" onchange="showNarakaInfo()">
-                <option value="kumbhipaka">1. Kumbhipaka (कुम्भीपाक) - Boiling Oil</option>
-                <option value="raurava">2. Raurava (रौरव) - Serpent Torment</option>
-                <option value="maharaurava">3. Maharaurava (महारौरव) - Flame Cavern</option>
-                <option value="vaitarani">4. Vaitarani (वैतरणी) - Blood & Acid River</option>
-                <option value="tamisra">5. Tamisra (तामिस्र) - Dark Abyss</option>
+            <select id="narakaSelect" onchange="showNarakaInfo()">
+                <option value="kumbhipaka">1. Kumbhipaka - Boiling Oil</option>
+                <option value="raurava">2. Raurava - Serpent Torment</option>
+                <option value="maharaurava">3. Maharaurava - Flame Cavern</option>
+                <option value="vaitarani">4. Vaitarani - Blood & Acid River</option>
+                <option value="tamisra">5. Tamisra - Dark Abyss</option>
             </select>
-            <div id="narakaDetails" style="margin-top:10px; font-size:12px; color:#ffcccc;" class="chitragupta-msg">
-                Select a Naraka to view Chitragupta's punishment decree.
+            <div id="narakaDetails" style="margin-top:8px; font-size:11px; color:#ffcccc;" class="chitragupta-msg">
+                Select a Naraka to view punishment decree.
             </div>
         </div>
     </div>
 
-    <!-- Input Bar -->
+    <!-- Global Input -->
     <div class="input-area">
         <span class="prompt">yamraj@yamlok:~$</span>
-        <input type="text" id="commandInput" placeholder="Enter target name..." autofocus autocomplete="off">
+        <input type="text" id="commandInput" placeholder="Enter name here..." autofocus autocomplete="off">
     </div>
 
     <script>
@@ -357,13 +389,16 @@
         const terminalLines = document.getElementById('terminal-lines');
         let countdownInterval = null;
 
-        function toggleChantSound() {
-            const audio = document.getElementById('chantAudio');
+        function toggleMantra() {
+            const audio = document.getElementById('mantraAudio');
+            if (audio.style.display === 'none') {
+                audio.style.display = 'block';
+            }
             if (audio.paused) {
                 audio.play().then(() => {
-                    alert("🔊 Lord Yamraj Chanting Mantra Started!");
+                    alert("🔊 Mantra Audio Playing!");
                 }).catch(() => {
-                    alert("⚠️ Audio play block: Please interact with screen first.");
+                    alert("Audio Player Controls Opened Below Header. Click Play!");
                 });
             } else {
                 audio.pause();
@@ -410,11 +445,10 @@
             document.getElementById('wDateDisplay').innerText = new Date().toLocaleDateString();
             
             const gates = ["Kumbhipaka Naraka", "Raurava Cavern", "Maharaurava Flame Gate", "Vaitarani River Crossing"];
-            const selectedGate = gates[Math.floor(Math.random() * gates.length)];
-            document.getElementById('wGateDisplay').innerText = selectedGate;
+            document.getElementById('wGateDisplay').innerText = gates[Math.floor(Math.random() * gates.length)];
 
             document.getElementById('warrantBox').style.display = 'block';
-            document.getElementById('downloadWarrantBtn').style.display = 'inline-block';
+            document.getElementById('downloadWarrantBtn').style.display = 'block';
             triggerRedFlash();
         }
 
@@ -427,7 +461,7 @@
                 const image = canvas.toDataURL("image/png");
                 const link = document.createElement('a');
                 link.href = image;
-                link.download = `Yamlok_Death_Warrant_${document.getElementById('wNameDisplay').innerText}.png`;
+                link.download = `Yamlok_Warrant_${document.getElementById('wNameDisplay').innerText}.png`;
                 link.click();
             });
         }
@@ -463,7 +497,7 @@
                     `${String(y).padStart(2, '0')}Y : ${String(d).padStart(3, '0')}D : ${String(h).padStart(2, '0')}H : ${String(m).padStart(2, '0')}M : ${String(s).padStart(2, '0')}S`;
             }, 1000);
 
-            document.getElementById('timerMessage').innerText = `📜 Chitragupta Decree: ${name}'s Prithvi Lok time running out based on Sin Score ${sin}%`;
+            document.getElementById('timerMessage').innerText = `📜 Chitragupta Decree: Time running out for ${name}`;
         }
 
         function calculateKarma() {
@@ -471,10 +505,9 @@
             const res = document.getElementById('karmaResult');
             const sinPercent = Math.floor(Math.random() * 40) + 60;
             res.innerHTML = `
-                <div style="font-size:12px;"><b>Target:</b> ${name}</div>
-                <div style="font-size:12px; color:var(--main-red);">Paap (Sins): ${sinPercent}%</div>
-                <div style="font-size:12px; color:#00ff66;">Punya (Virtues): ${100 - sinPercent}%</div>
-                <div class="chitragupta-msg" style="margin-top:6px;">Verdict: Transferred to Yamraj Death Note Log!</div>
+                <div style="font-size:11px;"><b>Target:</b> ${name}</div>
+                <div style="font-size:11px; color:var(--main-red);">Paap (Sins): ${sinPercent}%</div>
+                <div style="font-size:11px; color:#00ff66;">Punya (Virtues): ${100 - sinPercent}%</div>
             `;
         }
 
@@ -500,7 +533,7 @@
                 const randomCodes = [
                     `0x99A_SEARCH_LIFE_KARMA // TARGET: ${targetName}`,
                     `FETCH_SOUL_ID --user="${targetName}" --realm=YAMLOK`,
-                    `OVERRIDING_PRANA_PROTOCOL_v11.0... [OK]`,
+                    `OVERRIDING_PRANA_PROTOCOL_v12.0... [OK]`,
                     `DISPATCHING_YAMDOOT_SQUAD...`,
                     `LOGGING_DEATH_TIMESTAMP: ${new Date().toLocaleString()}`,
                     `DESTINY_LOG_SEALED_BY_DHARMARAJ: 0x0000_SOUL_TRANSFERRED`
