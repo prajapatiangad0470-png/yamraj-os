@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEATH WARRANT // YAMLOK OS</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        :root { --lava-red: #ff2200; --gold: #ffd700; --font: 'Courier New', Courier, monospace; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: var(--font); }
+        body { background: #050002; color: #fff; padding: 10px; }
+        .app-nav { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; margin-bottom: 10px; }
+        .nav-card { background: #1a0005; border: 1px solid var(--lava-red); color: #fff; padding: 10px; text-align: center; text-decoration: none; border-radius: 6px; font-size: 11px; font-weight: bold; }
+        .nav-card.active { background: var(--gold); color: #000; }
+        .card { background: #120004; border: 1px solid var(--gold); padding: 14px; border-radius: 8px; }
+        input { width: 100%; padding: 10px; background: #000; border: 1px solid var(--gold); color: #fff; border-radius: 4px; margin-bottom: 8px; }
+        button { width: 100%; padding: 10px; background: var(--lava-red); color: #fff; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; }
+        .warrant-box { background: #0a0002; border: 2px double var(--gold); padding: 12px; margin-top: 10px; text-align: center; display: none; }
+    </style>
+</head>
+<body>
+    <div class="app-nav">
+        <a href="index.html" class="nav-card">🏛️ Main Court</a>
+        <a href="chitragupta.html" class="nav-card">📜 Chitragupta</a>
+        <a href="narak.html" class="nav-card">👹 28 Narak</a>
+        <a href="deathnote.html" class="nav-card active">🪪 Death Warrant</a>
+        <a href="yamdoot.html" class="nav-card">⚔️ Yamdoot Forces</a>
+    </div>
+
+    <div class="card">
+        <h2 style="color:var(--gold); font-size:15px; margin-bottom:10px;">🪪 GENERATE OFFICIAL DEATH WARRANT</h2>
+        <input type="text" id="wName" placeholder="Enter sinner name...">
+        <button onclick="makeWarrant()">GENERATE WARRANT</button>
+
+        <div id="warrantCard" class="warrant-box">
+            <h3 style="color:var(--gold); font-size:14px;">☠︎ YAMLOK OFFICIAL DEATH WARRANT ☠︎</h3>
+            <p style="font-size:11px; margin-top:8px;"><b>TARGET:</b> <span id="targetDisp" style="color:#fff;">-</span></p>
+            <p style="font-size:11px;"><b>DECREE BY:</b> Lord Yamraj Dharmaraj</p>
+            <p style="font-size:11px;"><b>EXECUTION GATE:</b> Kumbhipaka Lava Gate</p>
+            <p style="font-size:10px; color:var(--gold); margin-top:8px;">[SEALED WITH DHARMARAJ KALADANDA ☸︎]</p>
+        </div>
+        <button id="dlBtn" style="display:none; background:var(--gold); color:#000; margin-top:8px;" onclick="downloadImage()">📥 Download Warrant Image</button>
+    </div>
+
+    <script>
+        function makeWarrant() {
+            const val = document.getElementById('wName').value.trim() || 'TARGET';
+            document.getElementById('targetDisp').innerText = val.toUpperCase();
+            document.getElementById('warrantCard').style.display = 'block';
+            document.getElementById('dlBtn').style.display = 'block';
+        }
+        function downloadImage() {
+            html2canvas(document.getElementById('warrantCard'), { backgroundColor: "#0a0002" }).then(canvas => {
+                const link = document.createElement('a');
+                link.href = canvas.toDataURL("image/png");
+                link.download = `Yamlok_Warrant.png`;
+                link.click();
+            });
+        }
+    </script>
+</body>
+</html>

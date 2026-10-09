@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHITRAGUPTA LEDGER // YAMLOK OS</title>
+    <style>
+        :root { --lava-red: #ff2200; --gold: #ffd700; --font: 'Courier New', Courier, monospace; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: var(--font); }
+        body { background: #050002; color: #fff; padding: 10px; }
+        .app-nav { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; margin-bottom: 10px; }
+        .nav-card { background: #1a0005; border: 1px solid var(--lava-red); color: #fff; padding: 10px; text-align: center; text-decoration: none; border-radius: 6px; font-size: 11px; font-weight: bold; }
+        .nav-card.active { background: var(--gold); color: #000; }
+        .card { background: #120004; border: 1px solid var(--gold); padding: 14px; border-radius: 8px; }
+        input { width: 100%; padding: 10px; background: #000; border: 1px solid var(--gold); color: #fff; border-radius: 4px; margin-bottom: 8px; }
+        button { width: 100%; padding: 10px; background: var(--lava-red); color: #fff; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="app-nav">
+        <a href="index.html" class="nav-card">🏛️ Main Court</a>
+        <a href="chitragupta.html" class="nav-card active">📜 Chitragupta</a>
+        <a href="narak.html" class="nav-card">👹 28 Narak</a>
+        <a href="deathnote.html" class="nav-card">🪪 Death Warrant</a>
+        <a href="yamdoot.html" class="nav-card">⚔️ Yamdoot Forces</a>
+    </div>
+
+    <div class="card">
+        <h2 style="color:var(--gold); font-size:15px; margin-bottom:10px;">📜 AGRASANDHANI KARMA AUDITOR</h2>
+        <input type="text" id="targetName" placeholder="Enter target full name...">
+        <button onclick="auditKarma()">INSPECT KARMIC RECORD</button>
+        <div id="resultBox" style="margin-top:12px; font-size:12px;"></div>
+    </div>
+
+    <script>
+        function auditKarma() {
+            const name = document.getElementById('targetName').value.trim() || 'TARGET';
+            const sin = Math.floor(Math.random() * 40) + 60;
+            document.getElementById('resultBox').innerHTML = `
+                <div style="border-left:3px solid var(--gold); padding-left:8px; margin-top:8px;">
+                    <p><b>SOUL:</b> ${name.toUpperCase()}</p>
+                    <p style="color:var(--lava-red);"><b>PAP SCORE (SINS):</b> ${sin}%</p>
+                    <p style="color:#00ff66;"><b>PUNYA SCORE (VIRTUES):</b> ${100 - sin}%</p>
+                    <p style="color:var(--gold); margin-top:4px;"><b>ASSIGNED NARAK:</b> Kumbhipaka Boiling Cauldron</p>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>
