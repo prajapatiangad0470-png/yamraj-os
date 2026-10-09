@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MR YAMRAJ // DEATH NOTE REALM</title>
+    <style>
+        :root {
+            --main-red: #ff003c;
+            --dark-red: #500010;
+            --glow-red: #ff2a2a;
+            --bg-overlay: rgba(5, 2, 3, 0.88);
+            --font: 'Courier New', Courier, monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: var(--font);
+        }
+
+        body {
+            background-color: #000;
+            background-image: linear-gradient(var(--bg-overlay), var(--bg-overlay)), url('yamraj.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #fff;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 15px;
+            overflow: hidden;
+        }
+
+        .header {
+            border-bottom: 2px solid var(--main-red);
+            padding-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            color: var(--main-red);
+            font-weight: bold;
+            text-shadow: 0 0 10px var(--glow-red);
+            letter-spacing: 1px;
+        }
+
+        #terminal {
+            flex-grow: 1;
+            overflow-y: auto;
+            margin: 15px 0;
+            padding-right: 5px;
+        }
+
+        .line {
+            margin-bottom: 6px;
+            line-height: 1.4;
+            word-break: break-word;
+        }
+
+        .cmd-line { color: #00f0ff; }
+        .sys-msg { color: var(--main-red); font-weight: bold; }
+        .code-matrix { color: #00ff66; font-size: 13px; opacity: 0.85; }
+        .yamraj-msg { 
+            color: #ffcc00; 
+            border-left: 3px solid var(--main-red); 
+            padding-left: 8px; 
+            margin: 8px 0;
+            font-weight: bold;
+            text-shadow: 0 0 5px #ffcc00;
+        }
+
+        .ascii-title {
+            color: var(--main-red);
+            white-space: pre;
+            font-size: 10px;
+            line-height: 1.1;
+            margin: 10px 0;
+            text-shadow: 0 0 8px var(--glow-red);
+            font-weight: bold;
+        }
+
+        .input-area {
+            display: flex;
+            align-items: center;
+            border-top: 1px solid var(--dark-red);
+            padding-top: 10px;
+            background: rgba(0,0,0,0.5);
+        }
+
+        .prompt {
+            color: var(--main-red);
+            margin-right: 8px;
+            font-weight: bold;
+            text-shadow: 0 0 5px var(--glow-red);
+        }
+
+        input {
+            background: transparent;
+            border: none;
+            color: #fff;
+            font-size: 16px;
+            flex-grow: 1;
+            outline: none;
+        }
+
+        #terminal::-webkit-scrollbar { width: 4px; }
+        #terminal::-webkit-scrollbar-thumb { background: var(--main-red); }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <span>❖ Mʀ᭄YAMRAJ ࿐</span>
+        <span>DEATH NOTE REALM v7.0</span>
+    </div>
+
+    <div id="terminal">
+        <div class="ascii-title">
+ ☠︎ MR. YAMRAJ DEATH NOTE REALM ☠︎
+===================================
+        </div>
+        <div class="line sys-msg">=== YAMRAJ DIGITAL REALM ACTIVATED ===</div>
+        <div class="line">Type <span style="color:#00f0ff">'help'</span> to view available realm protocols.</div>
+        <div class="line">Type <span style="color:var(--main-red)">'deathnote [Name]'</span> to register target in Death Note.</div>
+    </div>
+
+    <div class="input-area">
+        <span class="prompt">yamraj@deathnote:~$</span>
+        <input type="text" id="commandInput" autofocus autocomplete="off">
+    </div>
+
+    <script>
+        const input = document.getElementById('commandInput');
+        const terminal = document.getElementById('terminal');
+
+        input.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                const value = input.value.trim();
+                input.value = '';
+                if (!value) return;
+
+                printLine(`yamraj@deathnote:~$ ${value}`, 'cmd-line');
+                processCommand(value);
+            }
+        });
+
+        function printLine(text, className = '') {
+            const line = document.createElement('div');
+            line.className = `line ${className}`;
+            line.innerHTML = text;
+            terminal.appendChild(line);
+            terminal.scrollTop = terminal.scrollHeight;
+        }
+
+        function processCommand(cmdStr) {
+            const parts = cmdStr.split(' ');
+            const mainCmd = parts[0].toLowerCase();
+            const args = parts.slice(1).join(' ');
+
+            if (mainCmd === 'help') {
+                printLine(`AVAILABLE PROTOCOLS:<br> • <b style="color:var(--main-red)">deathnote [Name]</b> - Execute Death Note Execution Script<br> • <b>about</b> - Yamraj Realm Specs<br> • <b>yamdoot</b> - Yamdoot Bot Protocol<br> • <b>clear</b> - Clear terminal screen`);
+                return;
+            }
+
+            if (mainCmd === 'about') {
+                printLine(`[REALM LORD] Mʀ᭄YAMRAJ ࿐<br>Status: Controlling Life & Death Logs from Shadows...`);
+                return;
+            }
+
+            if (mainCmd === 'yamdoot') {
+                printLine(`[YAMDOOT BOT PROTOCOL]<br>Status: Standby for Execution Orders.`);
+                return;
+            }
+
+            if (mainCmd === 'clear') {
+                terminal.innerHTML = '';
+                return;
+            }
+
+            if (mainCmd === 'deathnote') {
+                if (!args) {
+                    printLine('⚠️ ERROR: Name required! Usage: deathnote [Name]', 'sys-msg');
+                    return;
+                }
+
+                startDeathNoteExecution(args);
+                return;
+            }
+
+            printLine(`Command not recognized: '${mainCmd}'`, 'sys-msg');
+        }
+
+        function startDeathNoteExecution(targetName) {
+            printLine(`[DEATH NOTE REGISTERED]: Initiating target code scan for: <b style="color:#fff">${targetName}</b>`, 'sys-msg');
+            
+            const randomCodes = [
+                `0x99A_SEARCH_LIFE_HEX // TARGET: ${targetName}`,
+                `FETCH_SOUL_ID --user="${targetName}" --realm=YAMRAJ`,
+                `OVERRIDING_HEARTBEAT_PROTOCOL_v4.2... [OK]`,
+                `CONNECTING_TO_YAMDOOT_NETWORK...`,
+                `LOGGING_DEATH_TIMESTAMP: ${new Date().toLocaleString()}`,
+                `DESTINY_FILE_OVERWRITTEN: 0x00000000_DEAD`
+            ];
+
+            let count = 0;
+            const codeInterval = setInterval(() => {
+                if (count < randomCodes.length) {
+                    printLine(`>> ${randomCodes[count]}`, 'code-matrix');
+                    count++;
+                } else {
+                    clearInterval(codeInterval);
+                    executeYamdootSequence(targetName);
+                }
+            }, 300);
+        }
+
+        function executeYamdootSequence(targetName) {
+            setTimeout(() => {
+                printLine(`🚨 YAMDOOT ${targetName.toUpperCase()} KE PRAAN LENE JAA RHE HAIN...`, 'sys-msg');
+                
+                setTimeout(() => {
+                    printLine(`⚡ [YAMDOOT PROTOCOL EXECUTED]: <br>⚔️ YAMDOOT: "${targetName.toUpperCase()} KO YAMRAJ KE SAMNE PESH KIYA GAYA HAI. FAISLA YAMRAJ KA HOGA!"`, 'yamraj-msg');
+                }, 3000);
+
+            }, 500);
+        }
+    </script>
+</body>
+</html>
